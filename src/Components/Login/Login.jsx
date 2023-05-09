@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import $ from "jquery"
 import { Link, useNavigate } from 'react-router-dom'
 
+
 import * as Yup from "yup"
 export default function SignIn({getUserDataDecoded}) {
   const navigate = useNavigate()
@@ -67,6 +68,7 @@ export default function SignIn({getUserDataDecoded}) {
   if(data.status=="success") {
     $(".sentDone").fadeIn(500)
     setisLoading(false)
+    navigate("/reset")
   }
  
 console.log(data);
