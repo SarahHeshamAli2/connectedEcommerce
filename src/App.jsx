@@ -45,7 +45,7 @@ export default function App() {
 
         {path:"/register",element :<SignUp/>},
         {path:"/login",element :<Login getUserDataDecoded={getUserDataDecoded}/>},
-        {path:"/reset",element :<ResetPassword />},
+        {path:"/reset/:id",element :<ResetPassword />},
         {path:"/test",element :<Test/>},
 
 

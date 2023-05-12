@@ -66,9 +66,9 @@ export default function SignIn({getUserDataDecoded}) {
   
   })
   if(data.status=="success") {
+ 
     $(".sentDone").fadeIn(500)
     setisLoading(false)
-    navigate("/reset")
   }
  
 console.log(data);
@@ -158,10 +158,12 @@ return <>
         {isLoading ? <button  className='w-50 btn btn-outline-primary mt-3 ' type='button'><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> :         <button onClick={forgotPass} className='w-50 btn btn-outline-primary mt-3 '>Confirm email</button>}
 
          </div>
-
+     
+   
         
 
 </div>
+
 
 </>
 }
