@@ -9,12 +9,12 @@ export default function ResetPassword() {
   const params = useParams()
   console.log(params.id);
 
-  async function takeUserTokenPasswordReset() {
+  async function takeUserTokenPasswordReset(id) {
     setload(true)
     try {
-      const {data} = await axios.patch(`https://e-commerce-9w3i.onrender.com/api/v1/auth/resetPassword/${params}`,{
-        "password" : $("#nPassword").val,
-        "passwordConfirm" : $("#cPassword").val
+      const {data} = await axios.patch(`https://e-commerce-9w3i.onrender.com/api/v1/auth/resetPassword/${id}`,{
+        "password" : document.querySelector("#nPassword").value,
+        "passwordConfirm" :  document.querySelector("#cPassword").value,
         
       })
       if(data.status == "success"){
@@ -58,7 +58,7 @@ return <>
         <label className='my-2' htmlFor="cPassword">Confirm New Password</label>
         <input   type="Password" id='cPassword' className='form-control '  />
      {
-      load ? <button  className='btn btn-success mt-3'><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> :         <button type='button' onClick={takeUserTokenPasswordReset} className='btn btn-success mt-3 load-bt'>Confirm</button>
+      load ? <button type="button"  className='btn btn-success mt-3'><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> :         <button type='button' onClick={function(){takeUserTokenPasswordReset(params.id)}} className='btn btn-success mt-3 load-bt'>Confirm</button>
 
      }
    
