@@ -40,7 +40,7 @@ export default function App() {
     }
 
 
-    const router = createBrowserRouter ([
+    const router = createHashRouter ([
         {path:"",element :<SignUp/>},
 
         {path:"/register",element :<SignUp/>},
