@@ -1,13 +1,16 @@
 import axios from "axios";
 import $ from "jquery"
+import { useState } from "react";
 import { useParams } from "react-router-dom"
 
 export default function ResetPassword() {
+  const [load, setload] = useState(false)
 
   const params = useParams()
   console.log(params.id);
 
   async function takeUserTokenPasswordReset() {
+    setload(true)
     try {
       const {data} = await axios.patch(`https://e-commerce-9w3i.onrender.com/api/v1/auth/resetPassword/${params}`,{
         "password" : $("#nPassword").val,
@@ -21,10 +24,12 @@ export default function ResetPassword() {
           }, 1000);
         })
       }
+      setload(false)
       console.log(data);
 
     } catch (error) {
       console.log(error);
+      setload(false)
       $(".mssg2").fadeIn(500,function(){
         setTimeout(() => {
           $(".mssg2").fadeOut(500)
@@ -52,9 +57,11 @@ return <>
 
         <label className='my-2' htmlFor="cPassword">Confirm New Password</label>
         <input   type="Password" id='cPassword' className='form-control '  />
+     {
+      load ? <button  className='btn btn-success mt-3'><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> :         <button type='button' onClick={takeUserTokenPasswordReset} className='btn btn-success mt-3 load-bt'>Confirm</button>
 
+     }
    
-        <button type='button' className='btn btn-success mt-3 load-bt'>Confirm</button>
         
    
 
