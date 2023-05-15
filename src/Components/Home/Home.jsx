@@ -67,7 +67,7 @@ return <>
     <div className="recommended my-5">
         <h1>Recommended for you</h1>
         <div className="row g-5 my-3 cursor-pointer">
-            {random?.map((pro,indx)=> < div className="col-md-2 rounded" key={indx}>
+            {random?.map((pro,indx)=> < div className="col-md-2 col-5 rounded" key={indx}>
                <Link to={`/proDetails/${pro._id}`}>
                
                <div className="inner">
