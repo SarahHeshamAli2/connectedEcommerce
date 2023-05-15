@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Montserrat+Alternates&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Roboto:wght@300&display=swap');
+
+
 .inner-signUp {
   border-radius: 4px;
   border: 1px #ddd solid;
@@ -36,4 +39,36 @@
 
   .logINS {
     display: flex;
+  }
+
+  nav .logo {
+    width: 6rem;
+    height: 3.5rem;
+  }
+  body {
+    background-image: url("./Images/light-patten.svg");
+    font-family: 'Nunito Sans', sans-serif;
+    
+  }
+
+  nav {
+    background-color: #ebeaeaee;
+  }
+
+  .slid {
+    background-color: #f7f7f7;
+  }
+  .slideImg {
+    width: 70%;
+  }
+  .spcColor {
+    color: rgb(20, 110, 228);
+  }
+  .cursor-pointer{
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: unset !important;
   }

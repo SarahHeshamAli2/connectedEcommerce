@@ -19,7 +19,7 @@ export default function SignIn({getUserDataDecoded}) {
       $(".fa-check").fadeIn(500)
       $(".successMsg").fadeIn(1000 ,function() {
         getUserDataDecoded()
-        navigate("/test")
+        navigate("/home")
 
       }) }
 
@@ -91,7 +91,7 @@ let user = {
 }
 let validation = Yup.object({
   email : Yup.string().required("email is required").email("email is invalid"),
-  password : Yup.string().required("password is required").matches(/^[A-Za-z][a-z0-9]{8,10}$/," please enter 8 to 10 characters"),
+  password:Yup.string().required("password is requried").matches(/^[A-Za-z0-9][a-z0-9]{7,15}$/,"password must be at least 8 charachters and maximum 15"),
 
 
 })

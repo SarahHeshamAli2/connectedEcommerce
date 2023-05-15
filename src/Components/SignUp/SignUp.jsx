@@ -47,7 +47,7 @@ let user = {
 let validation = Yup.object({
   username : Yup.string().required("username is required").min(3,"minimum 3 characters ").max(10,"maximum  10 characters"),
   email : Yup.string().required("email is required").email("email is invalid"),
-  password:Yup.string().required("password is requried").matches(/^[A-Za-z0-9][a-z0-9]{7,15}$/,"password must be at least 8 charachters"),
+  password:Yup.string().required("password is requried").matches(/^[A-Za-z0-9][a-z0-9]{7,15}$/,"password must be at least 8 charachters and maximum 15"),
   passwordConfirm:Yup.string().required("please confirm your password").oneOf([Yup.ref("password")],"confirm password and password don't match"),
 
 

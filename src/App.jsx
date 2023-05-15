@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import SignUp from './Components/SignUp/SignUp'
 import{ Navigate, RouterProvider, createBrowserRouter, createHashRouter} from "react-router-dom"
 import Login from './Components/Login/Login'
-import { Provider } from 'react-redux'
 import Test from './Components/Test/Test'
 import jwtDecode from 'jwt-decode'
 import ResetPassword from './Components/ResetPassword/ResetPassword'
+import Home from './Components/Home/Home'
+import Layout from './Components/Layout/Layout'
+import RandomProDetails from './Components/RandomProDetails/RandomProDetails'
+import Loading from './Components/LoadingScreen/Loading'
 
 
 
@@ -41,12 +44,19 @@ export default function App() {
 
 
     const router = createHashRouter ([
-        {path:"",element :<SignUp/>},
-
-        {path:"/register",element :<SignUp/>},
-        {path:"/login",element :<Login getUserDataDecoded={getUserDataDecoded}/>},
-        {path:"/reset/:id",element :<ResetPassword />},
-        {path:"/test",element :<Test/>},
+        {
+            path:"",element:<Layout/>,children:[{
+                path:"home",element:<Home/>
+            },
+            {index:true , element : <Home/>},
+            {path:"login",element:<Login getUserDataDecoded={getUserDataDecoded}/>},
+        {path:"proDetails/:id",element:<RandomProDetails/>},
+            {path:"resetPassword/:id" , element : <ResetPassword/>},
+            {path:"register" , element : <SignUp/>},
+    
+    ]
+        }
+       
 
 
 ])
