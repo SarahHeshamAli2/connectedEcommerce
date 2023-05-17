@@ -47,7 +47,7 @@ let user = {
 let validation = Yup.object({
   username : Yup.string().required("username is required").min(3,"minimum 3 characters ").max(10,"maximum  10 characters"),
   email : Yup.string().required("email is required").email("email is invalid"),
-  password:Yup.string().required("password is requried").matches(/^[A-Za-z0-9][a-z0-9]{7,15}$/,"password must be at least 8 charachters and maximum 15"),
+  password:Yup.string().required("password is requried").matches(/^([-\#\$\.\%\&\@\!\+\=\<\>\*])?(?=.*[a-zA-Z0-9]).{8,20}$/gm,"password must be at least 8 charachters and maximum 20 "),
   passwordConfirm:Yup.string().required("please confirm your password").oneOf([Yup.ref("password")],"confirm password and password don't match"),
 
 
@@ -94,7 +94,7 @@ return <>
 
 
         {isLoading? <button  className='btn btn-success ' type='button'><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button>:<button type='submit' className='btn btn-success mt-3 load-bt'>Register</button>}
-        <p className='my-3'>Already have an account ? <Link to="/login">Sign in</Link></p>  
+        <p className='my-3'>Already have an account ? <Link to="/login"  className='text-primary'>Sign in</Link></p>  
         <button type="button" className="login-with-google-btn my-2" >
   Sign up with Google
 </button>

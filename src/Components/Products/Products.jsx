@@ -25,11 +25,11 @@ return <>
 {loading ? <Loading/> : <div className="products my-5 ">
     <div className="container">
         <div className="row g-5">
-        {allProdcuts?.map((pro,indx)=>    <div className="col-md-4 col-6" key={indx}>
+        {allProdcuts?.map((pro,indx)=>    <div className="col-md-3 col-6" key={indx}>
         <Link  to={`/allProducts/${pro._id}`}>
         
         <div className="inn">
-        <img src={pro.img} alt="au" className='w-100' style={{height:"300px"}} />
+        <img src={pro.img} alt="au" className='w-100' style={{height:"200px"}} />
                 <h4 className='mt-5'>{pro.productName}</h4>
                 <h6 className=' mb-3'>{pro.description.slice(0,150)}</h6>
                 <p className="fw-bold spcColor" > {pro.price} EGP</p >

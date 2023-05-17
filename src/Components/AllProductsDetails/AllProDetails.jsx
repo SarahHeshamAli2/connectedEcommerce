@@ -12,9 +12,9 @@ export default function AllProDetails() {
  return <>
  
  
- {loading ? <Loading/> :<div className="random p-4 my-5">
+ {loading ? <Loading/> :<div className="random p-4 mt-4 pt-5">
 <div className="container">
-    <div className="row align-items-center g-4">
+    <div className="row align-items-center g-4 px-5">
         <div className="col-md-4 col-6">
         <div className="inn">
             <img src={proDetails?.img} alt="" className='w-100 rounded'/>
