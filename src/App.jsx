@@ -54,7 +54,7 @@ export default function App() {
             {index:true , element : <Home/>},
             {path:"login",element:<Login getUserDataDecoded={getUserDataDecoded}/>},
         {path:"allProducts/:id",element:<CatgoriesStoreProvider><AllProDetails/></CatgoriesStoreProvider>},
-            {path:"resetPassword/:id" , element : <ResetPassword/>},
+            {path:"reset/:id" , element : <ResetPassword/>},
             {path:"register" , element : <SignUp/>},
             {path:"products" , element : <Products/>},
             {path:"categories/:id" , element : <CatgoriesStoreProvider><Catg/></CatgoriesStoreProvider>},
