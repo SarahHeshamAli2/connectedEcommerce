@@ -7,8 +7,11 @@ import jwtDecode from 'jwt-decode'
 import ResetPassword from './Components/ResetPassword/ResetPassword'
 import Home from './Components/Home/Home'
 import Layout from './Components/Layout/Layout'
-import RandomProDetails from './Components/RandomProDetails/RandomProDetails'
 import Loading from './Components/LoadingScreen/Loading'
+import Catg from './Components/Categoires/Catg'
+import CatgoriesStoreProvider from './Components/Context/CatgoriesStore'
+import Products from './Components/Products/Products'
+import AllProDetails from './Components/AllProductsDetails/AllProDetails'
 
 
 
@@ -45,14 +48,16 @@ export default function App() {
 
     const router = createHashRouter ([
         {
-            path:"",element:<Layout/>,children:[{
+            path:"",element:<CatgoriesStoreProvider><Layout/></CatgoriesStoreProvider>,children:[{
                 path:"home",element:<Home/>
             },
             {index:true , element : <Home/>},
             {path:"login",element:<Login getUserDataDecoded={getUserDataDecoded}/>},
-        {path:"proDetails/:id",element:<RandomProDetails/>},
+        {path:"allProducts/:id",element:<CatgoriesStoreProvider><AllProDetails/></CatgoriesStoreProvider>},
             {path:"resetPassword/:id" , element : <ResetPassword/>},
             {path:"register" , element : <SignUp/>},
+            {path:"products" , element : <Products/>},
+            {path:"categories/:id" , element : <CatgoriesStoreProvider><Catg/></CatgoriesStoreProvider>},
     
     ]
         }

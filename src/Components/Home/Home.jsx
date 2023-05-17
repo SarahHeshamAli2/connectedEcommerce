@@ -42,7 +42,7 @@ return <>
       <div className="d-flex align-items-center p-3 slid rounded">
       <div className="mx-5">
       <h3>Sale up to 60% on games</h3>
-       <button className="btn btn-outline-dark">Shop Now</button>
+       <Link  to={"/categories/game"} className="btn btn-primary text-white" >Shop Now</Link>
       </div>
       <div>
       <img src={require("../../Images/pngegg (1).png")} alt="" className="slideImg" />
@@ -53,7 +53,7 @@ return <>
       <div className="d-flex align-items-center p-3 slid rounded">
       <div className="mx-5">
       <h3>Shop your favorite sport wear</h3>
-       <button className="btn btn-outline-dark">Shop Now</button>
+       <Link to={"/categories/sport"}  className="btn btn-primary text-white">Shop Now</Link >
       </div>
       <div>
       <img src={require("../../Images/pngegg (2).png")} alt="" className="slideImg" />
@@ -68,7 +68,7 @@ return <>
         <h1>Recommended for you</h1>
         <div className="row g-5 my-3 cursor-pointer">
             {random?.map((pro,indx)=> < div className="col-md-2 col-5 rounded" key={indx}>
-               <Link to={`/proDetails/${pro._id}`}>
+               <Link to={`/allProducts/${pro._id}`}>
                
                <div className="inner">
                     <img src={pro.img} alt="" className="w-100" />
