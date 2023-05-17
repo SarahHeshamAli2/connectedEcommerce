@@ -1,8 +1,10 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import Loading from "../LoadingScreen/Loading"
 
 export default function Products() {
+    const [loading,setLoading] = useState(false)
     const [allProdcuts, setallProdcuts] = useState(null)
     useEffect(()=>{
         getAllProducts()
@@ -10,15 +12,17 @@ export default function Products() {
     async function getAllProducts() {
 
     try {
+        setLoading(true)
         const {data} = await axios.get(`https://e-commerce-9w3i.onrender.com/api/v1/products`)
         setallProdcuts(data.products)
+        setLoading(false)
     } catch (error) {
         console.log("error",error);
     }
     }
 return <>
 
-<div className="products my-5 ">
+{loading ? <Loading/> : <div className="products my-5 ">
     <div className="container">
         <div className="row g-5">
         {allProdcuts?.map((pro,indx)=>    <div className="col-md-4 col-6" key={indx}>
@@ -36,7 +40,7 @@ return <>
         </div>
     </div>
 </div>
-
+}
 
 
 </>
