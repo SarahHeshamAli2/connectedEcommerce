@@ -40,7 +40,7 @@ return <>
         <div className="row g-4">
             {catgories?.map((pro,indx)=><div className="col-md-3 col-6" key={indx}>
           <Link to={`/allProducts/${pro._id}`}>
-          <div className="inner">
+          <div className="inner dec rounded">
                 <img src={pro.img} alt={pro.productName} className='w-100' style={{height:"200px"}} />
                 <h4 className='mt-5'>{pro.productName}</h4>
                 <h6 className=' mb-3'>{pro.description.slice(0,150)}</h6>

@@ -56,7 +56,7 @@
   }
 
   .slid {
-    background-color: #f7f7f7;
+    background-color: #f3efef;
   }
   .slideImg {
     width: 70%;
@@ -73,4 +73,23 @@
     color: unset !important;
   }
 
-  
+ .dec {
+  background-color: rgb(243, 243, 243);
+  color: rgb(64, 69, 83);
+  padding: 35px  15px;
+  position: relative;
+  height: 100%;
+ }
+
+
+.shopCart {
+  top: 90%;
+  left: 35px;
+  cursor: pointer;
+}
+.shopCart:hover {
+  color: #22BB33;
+}
+.ctgBTN {
+  padding: 0 !important;
+}

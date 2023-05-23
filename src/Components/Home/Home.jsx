@@ -37,7 +37,7 @@ return <>
 
 {loading ? <Loading/> : <div className="home py-5">
     <div className="container">
-    <Slider {...settings}>
+    <Slider className="cursor-pointer" {...settings}>
   
       <div className="d-flex align-items-center p-3 slid rounded">
       <div className="mx-5">
@@ -45,6 +45,7 @@ return <>
        <Link  to={"/categories/game"} className="btn btn-primary text-white" >Shop Now</Link>
       </div>
       <div>
+
       <img src={require("../../Images/pngegg (1).png")} alt="" className="slideImg" />
 
       </div>
@@ -67,10 +68,10 @@ return <>
     <div className="recommended my-5">
         <h1>Recommended for you</h1>
         <div className="row g-5 my-3 cursor-pointer">
-            {random?.map((pro,indx)=> < div className="col-md-2 col-5 rounded" key={indx}>
+            {random?.map((pro,indx)=> < div className="col-md-2 col-5 rounded " key={indx}>
                <Link to={`/allProducts/${pro._id}`}>
                
-               <div className="inner">
+               <div className="inner rounded ">
                     <img src={pro.img} alt="" className="w-100" />
                     <h3>{pro.productName.slice(0,20)}</h3>
                     <p className="fw-bold spcColor">{pro.price} EGP</p>

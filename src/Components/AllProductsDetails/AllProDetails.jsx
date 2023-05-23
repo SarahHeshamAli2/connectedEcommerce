@@ -4,15 +4,20 @@ import Loading from "../LoadingScreen/Loading"
 import { categoriesStore } from "../Context/CatgoriesStore"
 
 export default function AllProDetails() {
+    const userToken = localStorage.getItem("userToken")
      const {id} = useParams()
-    const { getRandomProDetails,proDetails,loading} = useContext(categoriesStore)
+    const { getRandomProDetails,proDetails,loading,addToCart,load} = useContext(categoriesStore)
+
     useEffect(()=>{
         getRandomProDetails(id)
     },[])
+
+
+
  return <>
  
  
- {loading ? <Loading/> :<div className="random p-4 mt-4 pt-5">
+ {loading ? <Loading/> :<div className="random my-3 py-5">
 <div className="container">
     <div className="row align-items-center g-4 px-5">
         <div className="col-md-4 col-6">
@@ -26,6 +31,8 @@ export default function AllProDetails() {
         <h3>{proDetails?.category}</h3>
         <h3>{proDetails?.description.slice(0,240)}</h3>
         <p  className="fw-bold spcColor">{proDetails?.price} EGP</p>
+        {load ? <button className="btn btn-outline-primary"><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> : <button className="btn btn-outline-primary" onClick={function(){addToCart(id)}}>Add to cart</button> }
+       
         </div>
     </div>
 </div>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import SignUp from './Components/SignUp/SignUp'
 import{ Navigate, RouterProvider, createBrowserRouter, createHashRouter} from "react-router-dom"
 import Login from './Components/Login/Login'
-import Test from './Components/Test/Test'
 import jwtDecode from 'jwt-decode'
 import ResetPassword from './Components/ResetPassword/ResetPassword'
 import Home from './Components/Home/Home'
@@ -12,7 +11,9 @@ import Catg from './Components/Categoires/Catg'
 import CatgoriesStoreProvider from './Components/Context/CatgoriesStore'
 import Products from './Components/Products/Products'
 import AllProDetails from './Components/AllProductsDetails/AllProDetails'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Cart from './Components/Cart/Cart'
 
 
 
@@ -45,10 +46,21 @@ export default function App() {
 
     }
 
+    
+    function clearUserData () {
+        localStorage.removeItem("userToken")
+        localStorage.removeItem("decode")
+        setCurrentUser(null)
+    
+
+
+    }
+   
+
 
     const router = createHashRouter ([
         {
-            path:"",element:<CatgoriesStoreProvider><Layout/></CatgoriesStoreProvider>,children:[{
+            path:"",element:<CatgoriesStoreProvider><Layout currentUser={currentUser} clearUserData={clearUserData}/></CatgoriesStoreProvider>,children:[{
                 path:"home",element:<Home/>
             },
             {index:true , element : <Home/>},
@@ -56,8 +68,9 @@ export default function App() {
         {path:"allProducts/:id",element:<CatgoriesStoreProvider><AllProDetails/></CatgoriesStoreProvider>},
             {path:"reset/:id" , element : <ResetPassword/>},
             {path:"register" , element : <SignUp/>},
-            {path:"products" , element : <Products/>},
+            {path:"products" , element : <CatgoriesStoreProvider><Products/></CatgoriesStoreProvider>},
             {path:"categories/:id" , element : <CatgoriesStoreProvider><Catg/></CatgoriesStoreProvider>},
+            {path:"cart" , element : <CatgoriesStoreProvider><Cart/></CatgoriesStoreProvider>},
     
     ]
         }
@@ -69,9 +82,10 @@ export default function App() {
    
 
     return <>
-    
-        <RouterProvider router={router}></RouterProvider>
+           
 
+        <RouterProvider router={router}></RouterProvider>
+        <ToastContainer/>
     
     
     
