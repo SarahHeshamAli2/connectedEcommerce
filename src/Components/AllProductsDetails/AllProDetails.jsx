@@ -2,14 +2,16 @@ import { useContext, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import Loading from "../LoadingScreen/Loading"
 import { categoriesStore } from "../Context/CatgoriesStore"
-
+import $ from "jquery"
 export default function AllProDetails() {
     const userToken = localStorage.getItem("userToken")
      const {id} = useParams()
     const { getRandomProDetails,proDetails,loading,addToCart,load} = useContext(categoriesStore)
     
     useEffect(()=>{
+
         getRandomProDetails(id)
+    
     },[])
 
 
@@ -32,8 +34,7 @@ export default function AllProDetails() {
         <h3>{proDetails?.description.slice(0,240)}</h3>
         <p  className="fw-bold spcColor">{proDetails?.price} EGP</p>
         <p>Quantity : <span className="fw-bolder"> {proDetails?.quantity}</span> in stock</p>
-
-        {load ? <button className="btn btn-outline-primary"><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> : <button className="btn btn-outline-primary w-25" onClick={function(){addToCart(id)}}>Add to cart</button> }
+    {load ? <button className="btn btn-outline-primary"><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> : <button className="btn btn-outline-primary w-25" onClick={function(){addToCart(id)}}>Add to cart</button> }
         </div>
     </div>
 </div>

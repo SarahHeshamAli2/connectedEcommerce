@@ -2,6 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { toast } from "react-toastify";
 import $ from "jquery"
+import { useNavigate } from "react-router-dom";
 export const categoriesStore = createContext()
 
 
@@ -16,7 +17,12 @@ const [cartProducts, setcartProducts] = useState(null)
   const [load , setLoad] = useState (false)
 const [cartQuantity,setCartQuantity] = useState(null)
     const [proDetails, setproDetails] = useState(null)
+const navigate = useNavigate()
+function navigateToLogin () {
+  toast.error("please login in first" )
+  navigate("/login")
 
+}
     async function getRandomProDetails(id) {
 
   try {
@@ -33,16 +39,22 @@ setLoading(false)
     {
       setLoad(true)
 
-   const {data} = await axios.get(`https://e-commerce-9w3i.onrender.com/api/v1/cart/`,{
-     headers: {
-       Authorization: "Bearer "+ localStorage.getItem("userToken"),
-     }
-     
-   })
-   setcartProducts(data.cart)
-   setLoad(false)
-   setCartQuantity(data.cart.quantity)
-   
+        try {
+          const {data} = await axios.get(`https://e-commerce-9w3i.onrender.com/api/v1/cart/`,{
+            headers: {
+              Authorization: "Bearer "+ localStorage.getItem("userToken"),
+            }
+            
+          })
+          setcartProducts(data.cart)
+          setLoad(false)
+          setCartQuantity(data.cart.quantity)
+          
+        } catch (error) {
+          console.log("error",error);
+          navigateToLogin()
+          setLoad(false)
+        }
     }
     async function addToCart (prodId) {
 
@@ -51,6 +63,7 @@ setLoading(false)
           const {data} = await axios.post(`https://e-commerce-9w3i.onrender.com/api/v1/cart`,{
               "product" : prodId,
               "quantity" : 1
+            
           },{      headers: {
               Authorization: "Bearer "+ localStorage.getItem("userToken"),
             }})
@@ -63,7 +76,8 @@ setLoading(false)
               draggable: true,
               progress: undefined,
               theme: "light"})
-            }
+            } 
+        
       setLoad(false)
 ;
       
@@ -79,7 +93,8 @@ setLoading(false)
 
         })
         setLoad(false)
-      console.log("error",error);    
+      console.log("error",error);  
+
       }
       }
       
