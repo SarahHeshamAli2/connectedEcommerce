@@ -7,7 +7,6 @@ export default function ResetPassword() {
   const [load, setload] = useState(false)
 
   const params = useParams()
-  console.log(params.id);
 
   async function takeUserTokenPasswordReset(id) {
     setload(true)
@@ -25,7 +24,6 @@ export default function ResetPassword() {
         })
       }
       setload(false)
-      console.log(data);
 
     } catch (error) {
       console.log(error);

@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import logo from "../../Images/logo.svg"
-
+import { categoriesStore } from '../Context/CatgoriesStore'
 
 export default function Navbar({currentUser,clearUserData}) {
+  const {getCartProducts} = useContext(categoriesStore)
+
   const navigate = useNavigate()
   function navigateToHome() {
   clearUserData()
@@ -15,7 +17,7 @@ return <>
 
 <nav className="navbar navbar-expand-lg ">
   <div className="container-fluid px-5">
-    <Link className="navbar-brand"><img src={logo} alt="website-logo" classNameName='logo' /></Link>
+    <Link className="navbar-brand"><img src={logo} alt="website-logo" className='logo' /></Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -43,7 +45,7 @@ return <>
       </ul>
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
         {currentUser ?      <>
-        <Link to={"/cart"}>          <i className="fa-solid fa-cart-shopping fs-5 mx-3 cursor-pointer"></i>
+        <Link to={"/cart"} >          <i  className="fa-solid fa-cart-shopping fs-5 mx-3 cursor-pointer"></i>
 </Link>
           <li className="nav-item">
           <span className="nav-link active cursor-pointer" aria-current="page" onClick={navigateToHome}>Sign Out </span>

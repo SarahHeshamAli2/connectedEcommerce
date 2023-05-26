@@ -25,7 +25,6 @@ export default function Home() {
         try {
             setLoading(true)
             const {data} = await axios.get(`https://e-commerce-9w3i.onrender.com/api/v1/products/random`)
-            console.log(data);
             setrandom(data.products)
             setLoading(false)
         } catch (error) {
