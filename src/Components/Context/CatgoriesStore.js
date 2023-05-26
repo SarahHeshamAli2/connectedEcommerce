@@ -17,6 +17,8 @@ const [cartProducts, setcartProducts] = useState(null)
   const [load , setLoad] = useState (false)
 const [cartQuantity,setCartQuantity] = useState(null)
     const [proDetails, setproDetails] = useState(null)
+    const [totalCartPrice, setTotalCartPrice] = useState(null)
+
 const navigate = useNavigate()
 function navigateToLogin () {
   toast.error("please login in first" )
@@ -49,6 +51,8 @@ setLoading(false)
           setcartProducts(data.cart)
           setLoad(false)
           setCartQuantity(data.cart.quantity)
+          setTotalCartPrice(data.price)
+          console.log(data);
           
         } catch (error) {
           console.log("error",error);
@@ -79,7 +83,9 @@ setLoading(false)
             } 
         
       setLoad(false)
-;
+      setCartQuantity(data.cart.quantity)
+      console.log(data);
+
       
       } catch (error) {
         toast.error(error?.response?.data?.message, {
@@ -175,11 +181,9 @@ async function updateCartItemsQuantity(id,count) {
   
   )
   if(data.status === "success") {
-    window.location.reload(true,function(){
-      toast("product updated!")
-
-    })
-
+ console.log(data);
+setcartProducts(data.cart)
+setTotalCartPrice(data.price)
   }
 setLoading(false)
 } catch (error) {
@@ -192,7 +196,7 @@ setLoading(false)
 
 
 
- return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity}}>
+ return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice}}>
 
 
 
