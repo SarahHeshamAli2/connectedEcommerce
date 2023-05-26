@@ -97,7 +97,12 @@ return <>
                 <h5>{pro.product.productName}</h5>
                 <h6  className="fw-bold spcColor"> {pro.product.price} EGP</h6>
                 <div className='d-flex justify-content-between align-items-center'>
-                 <input className='form-control w-25' type="number" value={ pro.quantity }   id='qunt' min={1}  onChange={function(e){getCartUpdated(pro._id,e.target.value)}}/>
+                  <div>
+                    <button onClick={function(){updateCartItemsQuantity(pro._id,pro.quantity+1)}} className='btn btn-sm btn-outline-primary'>+</button>
+                    <span className='mx-2'>{pro.quantity}</span>
+                    {pro.quantity >=2 ?                     <button onClick={function(){updateCartItemsQuantity(pro._id,pro.quantity-1)}} className='btn btn-sm btn-outline-primary'>-</button>
+ :  <button  className='btn btn-sm btn-outline-primary' disabled>-</button>}
+                  </div>
                   <button className='btn btn-danger my-2' onClick={function(){deleteCartItem(pro._id)}}>Remove Item from cart</button>
 
                 </div>
