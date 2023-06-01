@@ -34,8 +34,51 @@ export default function Home() {
 
 return <>
 
-{loading ? <Loading/> : <div className="home py-5">
+{loading ? <Loading/> : <div className="home ">
+<div class="header_section">
+         <div class="container">
+
+         </div>
+         {/* <!--banner section start --> */}
+         <div class="banner_section layout_padding">
+         <div class="container">
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="taital_main my-5">
+                                 <h4 class="banner_taital">Shop your favorite items!</h4>
+                              <Link to={"/products"}>   <button className="btn btn-outline-light">Start Shopping !</button></Link>
+                       
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div><img src={require("../../Images/img-1.png")} class="image_1"/></div>
+                           </div>
+                        </div>
+                     </div>
+         </div>
+         {/* <!--banner section end --> */}
+      </div>
     <div className="container">
+ 
+
+    <div className="recommended my-5  ">
+
+        <h1 >Recommended for you</h1>
+        <div className="row g-5 my-3 cursor-pointer ">
+            {random?.map((pro,indx)=> < div className="col-md-2 col-5 rounded " key={indx}>
+               <Link to={`/allProducts/${pro._id}`}>
+               
+               <div className="inner rounded  ">
+                    <img src={pro.img} alt="" className="w-100" />
+                    <h3>{pro.productName.slice(0,20)}</h3>
+                    <p className="fw-bold spcColor">{pro.price} EGP</p>
+
+                </div>
+               </Link>
+            </div>)}
+        </div>
+
+    </div>
     <Slider className="cursor-pointer" {...settings}>
   
       <div className="d-flex align-items-center p-3 slid rounded">
@@ -63,25 +106,8 @@ return <>
  
   
     </Slider>
-
-    <div className="recommended my-5">
-        <h1>Recommended for you</h1>
-        <div className="row g-5 my-3 cursor-pointer">
-            {random?.map((pro,indx)=> < div className="col-md-2 col-5 rounded " key={indx}>
-               <Link to={`/allProducts/${pro._id}`}>
-               
-               <div className="inner rounded ">
-                    <img src={pro.img} alt="" className="w-100" />
-                    <h3>{pro.productName.slice(0,20)}</h3>
-                    <p className="fw-bold spcColor">{pro.price} EGP</p>
-
-                </div>
-               </Link>
-            </div>)}
-        </div>
-
     </div>
-    </div>
+   
 </div>}
 
 </>

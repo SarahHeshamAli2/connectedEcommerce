@@ -76,7 +76,7 @@ updateCartItemsQuantity(id,count)
 
 return <>
 
-{load ? <Spinner/> : <div className="cart py-2">
+{load ? <Spinner/> : <div className="cart py-5 my-5 ">
  {cartProducts?.length == 0 ? <EmptyCart/> :    <div className="container position-relative ">
         <div className='d-flex justify-content-between'>
         <div>

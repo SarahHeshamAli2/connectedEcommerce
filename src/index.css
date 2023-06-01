@@ -46,17 +46,16 @@
     height: 3.5rem;
   }
   body {
-    background-image: url("./Images/light-patten.svg");
     font-family: 'Nunito Sans', sans-serif;
     
   }
 
   nav {
-    background-color: #ebeaeaee;
+    background-color: #ffffff;
   }
 
   .slid {
-    background-color: #f3efef;
+    background-color: #8a5cc709;
   }
   .slideImg {
     width: 70%;
@@ -74,21 +73,31 @@
   }
 
  .dec {
-  background-color: rgb(243, 243, 243);
-  color: rgb(64, 69, 83);
   padding: 35px  15px;
   position: relative;
   height: 100%;
+  transition: all 0.25s;
+
  }
 
 
 .shopCart {
-  top: 90%;
-  left: 35px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 80%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
   cursor: pointer;
 }
-.shopCart:hover {
-  color: rgb(21, 120, 207);
+.hoving:hover .shopCart {
+  display: flex;
+}
+.hoving:hover .dec  {
+  transform: translateY(-5px)
 }
 .ctgBTN {
   padding: 0 !important;
@@ -109,3 +118,68 @@
 .logoo:hover +lgScreen {
   right: 0;
 }
+
+.home {
+  width: 100%;
+  float: left;
+  background-image: url("./Images//banner-bg.png");
+  height: auto;
+  background-size: 100% 40%;
+  background-repeat: no-repeat;
+}
+
+
+.layout_padding {
+  padding-top: 90px;
+  padding-bottom: 0px;
+}
+
+
+
+
+.banner_section {
+  width: 100%;
+  float: left;
+  padding-bottom: 129px;
+}
+
+.banner_taital {
+  width: 100%;
+  float: left;
+  font-size: 60px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.font_size_90 {
+  font-size: 80px;
+}
+
+.banner_text {
+  width: 100%;
+  float: left;
+  font-size: 16px;
+  color: #ffffff;
+  margin-left: 0px;
+}
+
+.taital_main {
+  padding-left: 50px;
+}
+
+
+@media (max-width: 768px) {
+
+
+  .image_1 {
+    width: 75%;
+    
+  }
+  .home {
+    background-size:100% 25% ;
+  }
+  }
+
+  .copy {
+    background-color:rgba(0, 0, 0, 0.2);
+  }

@@ -26,27 +26,32 @@ export default function Products() {
     }
 return <>
 
-{loading ? <Loading/> : <div className="products my-5 ">
+{loading ? <Loading/> : <div className="products my-5 py-5">
     <div className="container">
         <div className="row g-5">
         {allProdcuts?.map((pro,indx)=>    <div className="col-md-3 col-6 position-relative hoving " key={indx}>
 
-            
-        <Link  to={`/allProducts/${pro._id}`}>
+
         
         <div className="inn dec rounded ">
         <img src={pro.img} alt="au" className='w-100' style={{height:"200px"}} />
                 <h4 className='mt-5'>{pro.productName.slice(0,50)}</h4>
-                {/* <h6 className=' mb-3'>{pro.description.slice(0,150)}</h6> */}
                 <p className="fw-bold spcColor" > {pro.price} EGP</p >
                 
              
         </div>
 
-        </Link>
-        <div className="position-absolute shopCart" onClick={function(){addToCart(pro._id)}}>
-            <AddShoppingCartIcon />
+        <div className="position-absolute shopCart rounded text-center m-auto text-white fw-bolder" >
+            <Link         to={`/allProducts/${pro._id}`}
+>            <button className="btn btn-primary ">View Product</button>
+</Link>
+            {load?<button className="btn btn-primary"><i className="fa-solid fa-spinner fa-spin  mx-2"></i></button> :            <button className="btn btn-primary mx-2" onClick={function(){addToCart(pro._id)}}>Add to cart</button>
+}
         </div>
+
+
+
+
         </div>
 
 

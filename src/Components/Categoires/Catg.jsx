@@ -5,6 +5,7 @@ import axios from 'axios'
 import Loading from '../LoadingScreen/Loading'
 
 export default function Catg() {
+    const {addToCart,load}= useContext(categoriesStore)
     const id =useParams()
     const myId = id.id
 
@@ -35,20 +36,25 @@ export default function Catg() {
 
 return <>
 {loading ? <Loading/> : 
-<div className="catgories my-5">
+<div className="catgories my-5 py-5">
     <div className="container">
         <div className="row g-4">
-            {catgories?.map((pro,indx)=><div className="col-md-3 col-6" key={indx}>
-          <Link to={`/allProducts/${pro._id}`}>
+            {catgories?.map((pro,indx)=><div className="col-md-3 col-6  position-relative hoving" key={indx}>
+         
           <div className="inner dec rounded">
                 <img src={pro.img} alt={pro.productName} className='w-100' style={{height:"200px"}} />
-                <h4 className='mt-5'>{pro.productName}</h4>
-                <h6 className=' mb-3'>{pro.description.slice(0,150)}</h6>
+                <h4 className='mt-5'>{pro.productName.slice(0,50)}</h4>
                 <p className="fw-bold spcColor" >{pro.price} EGP</p >
 
                 </div>
           
-          </Link>
+                <div className="position-absolute shopCart rounded text-center m-auto text-white fw-bolder" >
+            <Link         to={`/allProducts/${pro._id}`}
+>            <button className="btn btn-primary ">View Product</button>
+</Link>
+            {load?<button className="btn btn-primary"><i className="fa-solid fa-spinner fa-spin  mx-2"></i></button> :            <button className="btn btn-primary mx-2" onClick={function(){addToCart(pro._id)}}>Add to cart</button>
+}
+        </div>
             </div>)}
         </div>
     </div>
