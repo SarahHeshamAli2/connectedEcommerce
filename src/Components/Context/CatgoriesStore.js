@@ -13,7 +13,7 @@ export default function CatgoriesStoreProvider({children}) {
 
   const {id} = useParams()
 function decodeGoogle() {
-  if(id.startsWith("ey")){
+  if(id?.startsWith("ey")){
     console.log(id);
     const googleTkn = localStorage.getItem("googleTkn")
     let decodedToken = jwtDecode(googleTkn)
