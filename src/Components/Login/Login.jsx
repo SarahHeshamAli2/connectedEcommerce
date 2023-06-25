@@ -22,7 +22,7 @@ export default function SignIn({getUserDataDecoded}) {
       $(".successMsg").fadeIn(500, function() {
         setTimeout(() => {
           getUserDataDecoded()
-          navigate("/home")
+          navigate("/home/home")
         }, 500);
       })
        

@@ -85,7 +85,7 @@ console.log("app");
             path:"",element:<CatgoriesStoreProvider><Layout currentUser={currentUser} googleUser={googleUser} clearUserData={clearUserData}/></CatgoriesStoreProvider>,children:[{
                 path:"home/:id",element:<Home/>
             },
-            {index:"true/:id" , element : <Home/>},
+            {index:"true" , element : <Home/>},
             {path:"login",element:<CatgoriesStoreProvider><Login getUserDataDecoded={getUserDataDecoded}/></CatgoriesStoreProvider>},
         {path:"allProducts/:id",element:<CatgoriesStoreProvider><AllProDetails/></CatgoriesStoreProvider>},
             {path:"reset/:id" , element : <ResetPassword/>},
