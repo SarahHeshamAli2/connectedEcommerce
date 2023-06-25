@@ -12,15 +12,15 @@ export default function CatgoriesStoreProvider({children}) {
   const [googleUser, setGoogleUser] = useState(null)
 
   const {id} = useParams()
-  console.log(id);
 function decodeGoogle() {
-  if(id != "home" && id !=null){
+  if(id.startsWith("ey")){
     console.log(id);
     const googleTkn = localStorage.getItem("googleTkn")
     let decodedToken = jwtDecode(googleTkn)
     setGoogleUser(decodedToken)
     console.log(decodedToken);
 } 
+
 
 
 }
