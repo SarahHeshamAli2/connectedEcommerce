@@ -9,23 +9,12 @@ import jwtDecode from 'jwt-decode'
 
 
 export default function Home() {
-    const [googleUser, setGoogleUser] = useState(null)
 
     useEffect(()=> {
-        decodeGoogleToken()
         getRandomItems()
     },[])
-    const {id} = useParams() 
-    console.log(id);
-    function decodeGoogleToken() {
-        const googleUser = localStorage.setItem("googleTkn",id)
-        const googleTkn = localStorage.getItem("googleTkn")
-        let decodedToken = jwtDecode(googleTkn)
-        console.log(decodedToken);
 
 
-
-    }
     
     const [random, setrandom] = useState(null)
     const [loading, setLoading] = useState(false)

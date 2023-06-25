@@ -20,24 +20,43 @@ import Cart from './Components/Cart/Cart'
 
 
 export default function App() {
+    const [googleUser, setGoogleUser] = useState(null)
+
+    const {id} = useParams() 
+    console.log(id);
+    function googleDecodeToken() {
+        if(id != "home" && id !=null){
+            const googleUser = localStorage.setItem("googleTkn",id)
+            const googleTkn = localStorage.getItem("googleTkn")
+            let decodedToken = jwtDecode(googleTkn)
+            setGoogleUser(decodedToken)
+            console.log(decodedToken);
+        } 
+        
+
+
+    }
+ 
 
     
     useEffect(function(){
 
 
   
-        if(localStorage.getItem("userToken") !=null && currentUser == null) {
+        if(localStorage.getItem("userToken") !=null && currentUser == null ) {
         
             getUserDataDecoded()
+        }
+        if(localStorage.getItem("googleTkn") !=null && googleUser == null){
+            googleDecodeToken()
         }
         
             },[])
         
         
     const [currentUser, setCurrentUser] = useState(null)
-    //     const {id} = useParams() 
-    // console.log(id);
-
+ 
+console.log("app");
 
     function getUserDataDecoded() {
         let userToken = localStorage.getItem("userToken")
@@ -53,6 +72,8 @@ export default function App() {
         localStorage.removeItem("userToken")
         localStorage.removeItem("decode")
         setCurrentUser(null)
+        localStorage.removeItem("googleTkn")
+        setGoogleUser (null)
     
 
 
@@ -61,7 +82,7 @@ export default function App() {
 
     const router = createHashRouter ([
         {
-            path:"",element:<CatgoriesStoreProvider><Layout currentUser={currentUser} clearUserData={clearUserData}/></CatgoriesStoreProvider>,children:[{
+            path:"",element:<CatgoriesStoreProvider><Layout currentUser={currentUser} googleUser={googleUser} clearUserData={clearUserData}/></CatgoriesStoreProvider>,children:[{
                 path:"home/:id",element:<Home/>
             },
             {index:"true/:id" , element : <Home/>},

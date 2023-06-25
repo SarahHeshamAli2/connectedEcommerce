@@ -2,7 +2,8 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { toast } from "react-toastify";
 import $ from "jquery"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 export const categoriesStore = createContext()
 
 
@@ -18,6 +19,7 @@ const [cartProducts, setcartProducts] = useState(null)
 const [cartQuantity,setCartQuantity] = useState(null)
     const [proDetails, setproDetails] = useState(null)
     const [totalCartPrice, setTotalCartPrice] = useState(null)
+
 
 const navigate = useNavigate()
 function navigateToLogin () {
@@ -38,10 +40,7 @@ setLoading(false)
   }
     }
 
-    // function popUpWindow() {
-    //   window.open("https://e-commerce-9w3i.onrender.com/api/v1/auth/google", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=600,height=600");
-    // }
-    
+
     async function getCartProducts()
     {
       setLoad(true)

@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import logo from "../../Images/logo.svg"
 import { categoriesStore } from '../Context/CatgoriesStore'
 
-export default function Navbar({currentUser,clearUserData}) {
+export default function Navbar({currentUser,clearUserData,googleUser}) {
   const {getCartProducts} = useContext(categoriesStore)
   const navigate = useNavigate()
   function navigateToHome() {
@@ -43,7 +43,7 @@ return <>
        
       </ul>
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-        {currentUser  ?      <>
+        {currentUser || googleUser  ?      <>
         <Link to={"/cart"} >          <i  className="fa-solid fa-cart-shopping fs-5 mx-3 cursor-pointer"></i>
 </Link>
           <li className="nav-item">
