@@ -9,6 +9,17 @@ export const categoriesStore = createContext()
 
 
 export default function CatgoriesStoreProvider({children}) {
+  const [googleUser, setGoogleUser] = useState(null)
+
+  const {id} = useParams()
+  console.log(id);
+  if(id != "home" && id !=null){
+      console.log(id);
+      const googleTkn = localStorage.getItem("googleTkn")
+      let decodedToken = jwtDecode(googleTkn)
+      setGoogleUser(decodedToken)
+      console.log(decodedToken);
+  } 
 
 
 

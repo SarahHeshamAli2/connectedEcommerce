@@ -13,8 +13,7 @@ export default function Home() {
     useEffect(()=> {
         getRandomItems()
     },[])
-
-
+const mtP = useParams()
     
     const [random, setrandom] = useState(null)
     const [loading, setLoading] = useState(false)

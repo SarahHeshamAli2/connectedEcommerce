@@ -20,22 +20,8 @@ import Cart from './Components/Cart/Cart'
 
 
 export default function App() {
-    const [googleUser, setGoogleUser] = useState(null)
-
-    const {id} = useParams() 
-    console.log(id);
-    function googleDecodeToken() {
-        if(id != "home" && id !=null){
-            const googleUser = localStorage.setItem("googleTkn",id)
-            const googleTkn = localStorage.getItem("googleTkn")
-            let decodedToken = jwtDecode(googleTkn)
-            setGoogleUser(decodedToken)
-            console.log(decodedToken);
-        } 
-        
 
 
-    }
  
 
     
@@ -47,16 +33,12 @@ export default function App() {
         
             getUserDataDecoded()
         }
-        if(localStorage.getItem("googleTkn") !=null && googleUser == null){
-            googleDecodeToken()
-        }
-        
+       
             },[])
         
         
     const [currentUser, setCurrentUser] = useState(null)
  
-console.log("app");
 
     function getUserDataDecoded() {
         let userToken = localStorage.getItem("userToken")
@@ -72,8 +54,7 @@ console.log("app");
         localStorage.removeItem("userToken")
         localStorage.removeItem("decode")
         setCurrentUser(null)
-        localStorage.removeItem("googleTkn")
-        setGoogleUser (null)
+ 
     
 
 
@@ -82,10 +63,10 @@ console.log("app");
 
     const router = createHashRouter ([
         {
-            path:"",element:<CatgoriesStoreProvider><Layout currentUser={currentUser} googleUser={googleUser} clearUserData={clearUserData}/></CatgoriesStoreProvider>,children:[{
-                path:"home/:id",element:<Home/>
+            path:"",element:<CatgoriesStoreProvider><Layout currentUser={currentUser}  clearUserData={clearUserData}/></CatgoriesStoreProvider>,children:[{
+                path:"home/:id",element: <CatgoriesStoreProvider><Home /></CatgoriesStoreProvider>
             },
-            {index:"true" , element : <Home/>},
+            {index:"true" , element :  <CatgoriesStoreProvider><Home /></CatgoriesStoreProvider>},
             {path:"login",element:<CatgoriesStoreProvider><Login getUserDataDecoded={getUserDataDecoded}/></CatgoriesStoreProvider>},
         {path:"allProducts/:id",element:<CatgoriesStoreProvider><AllProDetails/></CatgoriesStoreProvider>},
             {path:"reset/:id" , element : <ResetPassword/>},
