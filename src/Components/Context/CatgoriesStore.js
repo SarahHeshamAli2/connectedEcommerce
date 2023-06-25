@@ -13,15 +13,17 @@ export default function CatgoriesStoreProvider({children}) {
 
   const {id} = useParams()
   console.log(id);
+function decodeGoogle() {
   if(id != "home" && id !=null){
-      console.log(id);
-      const googleTkn = localStorage.getItem("googleTkn")
-      let decodedToken = jwtDecode(googleTkn)
-      setGoogleUser(decodedToken)
-      console.log(decodedToken);
-  } 
+    console.log(id);
+    const googleTkn = localStorage.getItem("googleTkn")
+    let decodedToken = jwtDecode(googleTkn)
+    setGoogleUser(decodedToken)
+    console.log(decodedToken);
+} 
 
 
+}
 
   const notify = () => toast("Product added successfully to cart");
 const [cartProducts, setcartProducts] = useState(null)
@@ -211,7 +213,7 @@ setLoading(false)
 
 
 
- return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice}}>
+ return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice,decodeGoogle}}>
 
 
 

@@ -2,15 +2,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loading from "../LoadingScreen/Loading";
 import jwtDecode from 'jwt-decode'
+import { categoriesStore } from "../Context/CatgoriesStore";
 
 
 export default function Home() {
+     const {decodeGoogle}=useContext(categoriesStore)
+     
 
     useEffect(()=> {
+        decodeGoogle()
         getRandomItems()
     },[])
 const mtP = useParams()
