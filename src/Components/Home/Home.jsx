@@ -5,17 +5,28 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loading from "../LoadingScreen/Loading";
+import jwtDecode from 'jwt-decode'
 
 
 export default function Home() {
+    const [googleUser, setGoogleUser] = useState(null)
+
     useEffect(()=> {
-        console.log("ddd");
-
-
+        decodeGoogleToken()
         getRandomItems()
     },[])
-    const mYP = useParams() 
-    console.log(mYP);
+    const {id} = useParams() 
+    console.log(id);
+    function decodeGoogleToken() {
+        const googleUser = localStorage.setItem("googleTkn",id)
+        const googleTkn = localStorage.getItem("googleTkn")
+        let decodedToken = jwtDecode(googleTkn)
+        console.log(decodedToken);
+
+
+
+    }
+    
     const [random, setrandom] = useState(null)
     const [loading, setLoading] = useState(false)
     var settings = {

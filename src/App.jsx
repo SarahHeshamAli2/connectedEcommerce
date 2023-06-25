@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import SignUp from './Components/SignUp/SignUp'
-import{ Navigate, RouterProvider, createBrowserRouter, createHashRouter} from "react-router-dom"
+import{ Navigate, RouterProvider, createBrowserRouter, createHashRouter, useParams} from "react-router-dom"
 import Login from './Components/Login/Login'
 import jwtDecode from 'jwt-decode'
 import ResetPassword from './Components/ResetPassword/ResetPassword'
@@ -35,6 +35,8 @@ export default function App() {
         
         
     const [currentUser, setCurrentUser] = useState(null)
+    //     const {id} = useParams() 
+    // console.log(id);
 
 
     function getUserDataDecoded() {
