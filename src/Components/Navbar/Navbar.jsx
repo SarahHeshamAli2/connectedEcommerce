@@ -5,7 +5,6 @@ import { categoriesStore } from '../Context/CatgoriesStore'
 
 export default function Navbar({currentUser,clearUserData}) {
   const {getCartProducts} = useContext(categoriesStore)
-
   const navigate = useNavigate()
   function navigateToHome() {
   clearUserData()
@@ -24,7 +23,7 @@ return <>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
         <li className="nav-item">
-          <Link className="nav-link active" aria-current="page"to={"/home"}>Home</Link>
+          <Link className="nav-link active" aria-current="page"to={"/home/home"}>Home</Link>
         </li>
        
 
@@ -44,7 +43,7 @@ return <>
        
       </ul>
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-        {currentUser ?      <>
+        {currentUser  ?      <>
         <Link to={"/cart"} >          <i  className="fa-solid fa-cart-shopping fs-5 mx-3 cursor-pointer"></i>
 </Link>
           <li className="nav-item">

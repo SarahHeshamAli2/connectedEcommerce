@@ -41,7 +41,7 @@ export default function App() {
         let userToken = localStorage.getItem("userToken")
         let decodedToken = jwtDecode(userToken)
         setCurrentUser (decodedToken)
-      
+        
 
 
     }
@@ -55,19 +55,18 @@ export default function App() {
 
 
     }
-   
 
 
     const router = createHashRouter ([
         {
             path:"",element:<CatgoriesStoreProvider><Layout currentUser={currentUser} clearUserData={clearUserData}/></CatgoriesStoreProvider>,children:[{
-                path:"home",element:<Home/>
+                path:"home/:id",element:<Home/>
             },
-            {index:true , element : <Home/>},
-            {path:"login",element:<Login getUserDataDecoded={getUserDataDecoded}/>},
+            {index:"true/:id" , element : <Home/>},
+            {path:"login",element:<CatgoriesStoreProvider><Login getUserDataDecoded={getUserDataDecoded}/></CatgoriesStoreProvider>},
         {path:"allProducts/:id",element:<CatgoriesStoreProvider><AllProDetails/></CatgoriesStoreProvider>},
             {path:"reset/:id" , element : <ResetPassword/>},
-            {path:"register" , element : <SignUp/>},
+            {path:"register" , element :<CatgoriesStoreProvider> <SignUp/></CatgoriesStoreProvider>},
             {path:"products" , element : <CatgoriesStoreProvider><Products/></CatgoriesStoreProvider>},
             {path:"categories/:id" , element : <CatgoriesStoreProvider><Catg/></CatgoriesStoreProvider>},
             {path:"cart" , element : <CatgoriesStoreProvider><Cart/></CatgoriesStoreProvider>},

@@ -37,6 +37,11 @@ setLoading(false)
     console.log("error",error);
   }
     }
+
+    // function popUpWindow() {
+    //   window.open("https://e-commerce-9w3i.onrender.com/api/v1/auth/google", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=600,height=600");
+    // }
+    
     async function getCartProducts()
     {
       setLoad(true)

@@ -3,14 +3,19 @@ import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loading from "../LoadingScreen/Loading";
 
 
 export default function Home() {
     useEffect(()=> {
+        console.log("ddd");
+
+
         getRandomItems()
     },[])
+    const mYP = useParams() 
+    console.log(mYP);
     const [random, setrandom] = useState(null)
     const [loading, setLoading] = useState(false)
     var settings = {

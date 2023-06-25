@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { useFormik } from 'formik'
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import $ from "jquery"
 import { Link, useNavigate } from 'react-router-dom'
 
 import * as Yup from "yup"
+import { categoriesStore } from '../Context/CatgoriesStore'
 export default function SignUp() {
   const navigate = useNavigate()
   const [isLoading, setisLoading] = useState(false)
@@ -95,9 +96,9 @@ return <>
 
         {isLoading? <button  className='btn btn-success ' type='button'><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button>:<button type='submit' className='btn btn-success mt-3 load-bt'>Register</button>}
         <p className='my-3'>Already have an account ? <Link to="/login"  className='text-primary'>Sign in</Link></p>  
-        <button type="button" className="login-with-google-btn my-2" >
-  Sign up with Google
-</button>
+        <Link to={"https://e-commerce-9w3i.onrender.com/api/v1/auth/google"}  type="button" className="login-with-google-btn my-2" >
+  Sign Up with Google
+</Link>
 
         </form>
         </div>

@@ -1,11 +1,13 @@
 import axios from 'axios'
 import { useFormik } from 'formik'
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import $ from "jquery"
 import { Link, useNavigate } from 'react-router-dom'
 
 
 import * as Yup from "yup"
+import { toast } from 'react-toastify'
+import { categoriesStore } from '../Context/CatgoriesStore'
 export default function SignIn({getUserDataDecoded}) {
   const navigate = useNavigate()
   const [isLoading, setisLoading] = useState(false)
@@ -17,11 +19,15 @@ export default function SignIn({getUserDataDecoded}) {
     if(data.status=="success") {
       localStorage.setItem("userToken" , data.token)
       $(".fa-check").fadeIn(500)
-      $(".successMsg").fadeIn(1000 ,function() {
-        getUserDataDecoded()
-        navigate("/home")
+      $(".successMsg").fadeIn(500, function() {
+        setTimeout(() => {
+          getUserDataDecoded()
+          navigate("/home")
+        }, 500);
+      })
+       
 
-      }) }
+       }
 
     setisLoading(false)
 
@@ -29,13 +35,7 @@ export default function SignIn({getUserDataDecoded}) {
     console.log("error",error);
 
     setisLoading(false)
-    $(".errorMsg").fadeIn( 500,()=>{
-      
-      setTimeout(() => {
-        $(".errorMsg").fadeOut(2000)
-      }, 1000);
-
-    })
+    toast.error("invalid email or password")
  
   }
   }
@@ -45,13 +45,26 @@ export default function SignIn({getUserDataDecoded}) {
 
       setTimeout(() => {
         $(".forgot").fadeIn(500)
-      }, 1000);
+      }, 500);
     })
   
      
   }
 
+  function hideForgotPass()
+ {
 
+
+  $(".forgot").fadeOut(1 , function() {
+    setTimeout(() => {
+      $(".inner-signUp").fadeIn(500)
+    }, 500);
+
+  })
+
+
+
+ }
   async function forgotPass() {
     try {
       
@@ -66,8 +79,7 @@ export default function SignIn({getUserDataDecoded}) {
   
   })
   if(data.status=="success") {
- 
-    $(".sentDone").fadeIn(500)
+ toast.success("email sent!")
     setisLoading(false)
   }
  
@@ -76,14 +88,32 @@ console.log(data);
     } catch (error) {
       console.log("Error",error);
       setisLoading(false)
-      $(".doesntExist").fadeIn(500,function(){
-        setTimeout(() => {
-          $(".doesntExist").fadeOut(500)
-        }, 500);
-      })
+        toast.error("Your email does not exist",{
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+
+        })
     }
     
   }
+
+// async function signUpWithGoogle()
+//  {
+
+// try {
+//   const {data} = await axios.get (`https://e-commerce-9w3i.onrender.com/api/v1/auth/google`)
+//   console.log(data);
+
+// } catch (error) {
+//   console.log("error:" , error);
+// }
+//  }
+
 
 let user = {
   "email":"",
@@ -107,12 +137,11 @@ onSubmit : function (values) {
 
 
 
-
 return <>
+{console.log("hello")}
 <div className="alert alert-danger doesntExist" style={{display:"none"}}>Email doesn't exist !</div>
 <div className="alert alert-success sentDone "  style={{display:"none"}}>Reset Link sent successfully to your email !</div>
 
-<div style={{"textAlign":"center" , "display":"none"}} className='alert alert-danger errorMsg'>Incorrect Email or password</div>
 <div style={{"textAlign":"center" ,"display":"none" }} className='alert alert-success successMsg'>Welcome back !</div>
 
 
@@ -137,9 +166,9 @@ return <>
         <button onClick={toForgotPassword} type='button' className='float-end btn btn-outline-primary mt-3 '>Forgot Password</button>
         
         <p className='my-3'>New member ? <Link to="/register" className='text-primary'>Sign up</Link></p>  
-        <button type="button" className="login-with-google-btn my-2" >
-  Sign up with Google
-</button>
+        <Link to={"https://e-commerce-9w3i.onrender.com/api/v1/auth/google"}  id='googleWindow' className="login-with-google-btn my-2" >
+  Sign In with Google
+</Link >
 
         </form>
         </div>
@@ -156,6 +185,7 @@ return <>
           </div>
         <input type="email" className='form-control forgotEmail' placeholder='enter your email'/>
         {isLoading ? <button  className='w-50 btn btn-outline-primary mt-3 ' type='button'><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> :         <button onClick={forgotPass} className='w-50 btn btn-outline-primary mt-3 '>Confirm email</button>}
+        <button onClick={hideForgotPass} className='d-block  btn btn-outline-primary my-2'> <i className="fa-sharp fa-solid fa-arrow-left"></i> </button>
 
          </div>
      

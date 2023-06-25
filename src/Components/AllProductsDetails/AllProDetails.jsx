@@ -15,10 +15,9 @@ export default function AllProDetails() {
     },[])
 
 
-
  return <>
  
- 
+
  {loading ? <Loading/> :<div className="random my-5 py-5">
 <div className="container">
     <div className="row align-items-center g-4 px-5">
