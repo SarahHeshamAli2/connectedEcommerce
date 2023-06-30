@@ -9,29 +9,31 @@ export const categoriesStore = createContext()
 
 
 export default function CatgoriesStoreProvider({children}) {
-  const [googleUser, setGoogleUser] = useState(null)
+//   const [googleUser, setGoogleUser] = useState(null)
 
-  const {id} = useParams()
-function decodeGoogle() {
-  if(id?.startsWith("ey")){
-    console.log(id);
-    const googleTkn = localStorage.getItem("googleTkn")
-    let decodedToken = jwtDecode(googleTkn)
-    setGoogleUser(decodedToken)
-    console.log(decodedToken);
-} 
+//   const {id} = useParams()
+// function decodeGoogle() {
+//   if(id?.startsWith("ey")){
+//     console.log(id);
+//     const googleTkn = localStorage.getItem("googleTkn")
+//     let decodedToken = jwtDecode(googleTkn)
+//     setGoogleUser(decodedToken)
+//     console.log(decodedToken);
+// } 
 
 
 
-}
+// }
 
   const notify = () => toast("Product added successfully to cart");
 const [cartProducts, setcartProducts] = useState(null)
     const [loading, setLoading] = useState(false)
   const [load , setLoad] = useState (false)
+  const [loader , setLoader] = useState (false)
 const [cartQuantity,setCartQuantity] = useState(null)
     const [proDetails, setproDetails] = useState(null)
     const [totalCartPrice, setTotalCartPrice] = useState(null)
+    const [wishListPro, setWishListPro] = useState(null)
 
 
 const navigate = useNavigate()
@@ -75,6 +77,29 @@ setLoading(false)
           console.log("error",error);
           navigateToLogin()
           setLoad(false)
+        }
+    }
+    async function getWishList()
+    {
+      setLoading(true)
+
+        try {
+          const {data} = await axios.get(`https://e-commerce-9w3i.onrender.com/api/v1/profile/wishlist`,{
+            headers: {
+              Authorization: "Bearer "+ localStorage.getItem("userToken"),
+            }
+            
+          })
+          setWishListPro(data.wishList)
+          setLoading(false)
+          setCartQuantity(data.wishList.quantity)
+          setTotalCartPrice(data.price)
+          console.log(data.wishList);
+          
+        } catch (error) {
+          console.log("error",error);
+          navigateToLogin()
+          setLoading(false)
         }
     }
     async function addToCart (prodId) {
@@ -121,6 +146,48 @@ setLoading(false)
       }
       }
       
+    async function addToWishList (prodId) {
+      setLoader(true)
+
+      try {
+          const {data} = await axios.post(`https://e-commerce-9w3i.onrender.com/api/v1/profile/wishlist`,{
+              "product" : prodId
+              
+            
+          },{      headers: {
+              Authorization: "Bearer "+ localStorage.getItem("userToken"),
+            }})
+            if(data.status === "sucess") {
+              setWishListPro(data.wishList)
+              $(".wishlistAdd").fadeIn(500,function(){
+                setTimeout(() => {
+                  $(".wishlistAdd").fadeOut(1000)
+                }, 1000);
+              })
+            } 
+            setLoader(false)
+
+      console.log(data.wishList);
+
+      
+      } catch (error) {
+        toast.error(error?.response?.data?.message, {
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+
+        })
+        setLoader(false)
+
+      console.log("error",error);  
+
+      }
+      }
+      
 
 async function deleteCartItem(id) {
 try {
@@ -132,6 +199,7 @@ try {
 
   })
   if(data.status=="Deleted successfully") {
+    console.log(data);
 
 setcartProducts(data.cart)
 toast.error("item deleted from cart", {
@@ -151,6 +219,56 @@ toast.error("item deleted from cart", {
   toast.warn("something went wrong please try again")
 }
  }
+async function deleteFromWishlist(id) { 
+try {
+  const {data} =  await axios.delete(`https://e-commerce-9w3i.onrender.com/api/v1/profile/wishlist/${id}` ,{
+    headers: {
+      Authorization: "Bearer "+ localStorage.getItem("userToken"),
+    } 
+
+
+  })
+  if(data.status == "success") {
+
+setWishListPro(data.wishList)
+console.log(data.wishList);
+toast.error("item deleted from wishList", {
+  position: "top-right",
+  autoClose: 1000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light"
+
+})
+  }
+} catch (error) {
+  console.log("error",error);
+  toast.warn("something went wrong please try again")
+}
+ }
+
+
+////////////
+
+// async function deleteItemFromWishList(id) {
+
+// const {data} = await axios.delete("https://e-commerce-9w3i.onrender.com/api/v1/profile/wishlist" , {
+//   "product" : id
+// } , {
+//   headers: {
+//     Authorization: "Bearer "+ localStorage.getItem("userToken"),
+//   }
+
+// }) 
+// if(data.status == "success") {
+//   console.log(data);
+// }
+
+// }
+
 
 async function emptyYourCart() {
 
@@ -213,7 +331,7 @@ setLoading(false)
 
 
 
- return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice,decodeGoogle}}>
+ return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice,addToWishList,loader,wishListPro,getWishList,deleteFromWishlist}}>
 
 
 

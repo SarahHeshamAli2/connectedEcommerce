@@ -44,7 +44,8 @@ return <>
       </ul>
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
         {currentUser || googleUser  ?      <>
-        <Link to={"/cart"} >          <i  className="fa-solid fa-cart-shopping fs-5 mx-3 cursor-pointer"></i>
+        <Link className='me-3' to={"wishlist"}>WishList  <i className="fa-solid fa-heart text-danger" ></i></Link>
+        <Link to={"/cart"} >     Cart     <i  className="fa-solid fa-cart-shopping fs-5 me-3 cursor-pointer"></i>
 </Link>
           <li className="nav-item">
           <span className="nav-link active cursor-pointer" aria-current="page" onClick={navigateToHome}>Sign Out </span>

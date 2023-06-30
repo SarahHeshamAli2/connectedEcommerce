@@ -10,11 +10,9 @@ import { categoriesStore } from "../Context/CatgoriesStore";
 
 
 export default function Home() {
-     const {decodeGoogle}=useContext(categoriesStore)
      
 
     useEffect(()=> {
-        decodeGoogle()
         getRandomItems()
     },[])
 const mtP = useParams()

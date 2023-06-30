@@ -14,6 +14,8 @@ import AllProDetails from './Components/AllProductsDetails/AllProDetails'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cart from './Components/Cart/Cart'
+import WishList from './Components/WishList/WishList'
+import GoogleUser from './Components/GoogleUser/GoogleUser'
 
 
 
@@ -70,10 +72,12 @@ export default function App() {
             {path:"login",element:<CatgoriesStoreProvider><Login getUserDataDecoded={getUserDataDecoded}/></CatgoriesStoreProvider>},
         {path:"allProducts/:id",element:<CatgoriesStoreProvider><AllProDetails/></CatgoriesStoreProvider>},
             {path:"reset/:id" , element : <ResetPassword/>},
+            {path:"googleuser/:id" , element : <GoogleUser/>},
             {path:"register" , element :<CatgoriesStoreProvider> <SignUp/></CatgoriesStoreProvider>},
             {path:"products" , element : <CatgoriesStoreProvider><Products/></CatgoriesStoreProvider>},
             {path:"categories/:id" , element : <CatgoriesStoreProvider><Catg/></CatgoriesStoreProvider>},
             {path:"cart" , element : <CatgoriesStoreProvider><Cart/></CatgoriesStoreProvider>},
+            {path:"wishlist" , element : <CatgoriesStoreProvider><WishList/></CatgoriesStoreProvider>},
     
     ]
         }
