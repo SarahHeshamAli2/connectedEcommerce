@@ -19,8 +19,7 @@ function addingTest(id) {
         addToCart(id)
 
     }
-    console.log("extraNew");
-    if(localStorage.getItem("googleToken") !=null) {
+    else if(localStorage.getItem("googleToken") !=null) {
         googleAddToCart(id)
     }
 }
