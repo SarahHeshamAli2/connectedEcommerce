@@ -79,6 +79,29 @@ setLoading(false)
           setLoad(false)
         }
     }
+    async function getGoogleCart()
+    {
+      setLoad(true)
+
+        try {
+          const {data} = await axios.get(`https://e-commerce-9w3i.onrender.com/api/v1/cart/`,{
+            headers: {
+              Authorization: "Bearer "+ localStorage.getItem("googleToken"),
+            }
+            
+          })
+          setcartProducts(data.cart)
+          setLoad(false)
+          setCartQuantity(data.cart.quantity)
+          setTotalCartPrice(data.price)
+          console.log(data);
+          
+        } catch (error) {
+          console.log("error",error);
+          navigateToLogin()
+          setLoad(false)
+        }
+    }
     async function getWishList()
     {
       setLoading(true)
@@ -374,7 +397,7 @@ setLoading(false)
 
 
 
- return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice,addToWishList,loader,wishListPro,getWishList,deleteFromWishlist,googleAddToCart}}>
+ return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice,addToWishList,loader,wishListPro,getWishList,deleteFromWishlist,googleAddToCart,getGoogleCart}}>
 
 
 

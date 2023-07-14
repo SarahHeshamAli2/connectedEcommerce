@@ -59,9 +59,15 @@ export default function Cart() {
     
     const [open, setOpen] = React.useState(false);
 
-    const { getCartProducts,cartProducts,deleteCartItem,load,emptyYourCart,cartQuantity,updateCartItemsQuantity,loading,totalCartPrice} = useContext(categoriesStore)
+    const { getCartProducts,cartProducts,deleteCartItem,load,emptyYourCart,cartQuantity,updateCartItemsQuantity,loading,totalCartPrice,getGoogleCart} = useContext(categoriesStore)
 useEffect(()=>{
+  if(localStorage.getItem("userToken") !=null ) {
     getCartProducts()
+
+  } 
+  if(localStorage.getItem("googleToken") !=null) {
+    getGoogleCart()
+  }
 },[])
 
 
