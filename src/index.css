@@ -192,4 +192,55 @@
     text-align: center;
   }
 
- 
+ .visa-box {
+  background: rgb(241, 244, 253);
+  margin: 15px 0px;
+  padding: 20px;
+  width: auto;
+ }
+
+ /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.sep {
+  top: 50%;
+  right: 80%;
+  transform: translate(-50%,-50%);
+}
+.expiry {
+  display: inline-block;
+  width: 25%;
+  padding: 10px;
+}
+textarea:focus, input:focus{
+  outline: none;
+}
+.cv {
+  padding: 8px;
+  width: 50%;
+}
+.cvIcon {
+  top: 50%;
+  right: 50%;
+  transform: translate(-50% , -50%);
+  cursor: pointer;
+}
+.cvInfo {
+  left: 55%;
+  top: 10%;
+}
+
+.fa-clipboard {
+  cursor: pointer;
+  top: 75%;
+  right: 65%;
+}

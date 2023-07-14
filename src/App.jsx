@@ -16,6 +16,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import Cart from './Components/Cart/Cart'
 import WishList from './Components/WishList/WishList'
 import GoogleUser from './Components/GoogleUser/GoogleUser'
+import CheckOut from './Components/CheckOut/CheckOut'
+import ThankYou from './Components/ThankYou/ThankYou'
+import AllOrders from './Components/AllOrders/AllOrder'
 
 
 
@@ -73,6 +76,9 @@ export default function App() {
         {path:"allProducts/:id",element:<CatgoriesStoreProvider><AllProDetails/></CatgoriesStoreProvider>},
             {path:"reset/:id" , element : <ResetPassword/>},
             {path:"googleuser/:id" , element : <GoogleUser/>},
+            {path:"checkout" , element : <CheckOut/>},
+            {path:"thank" , element : <ThankYou/>},
+            {path:"allorders" , element : <AllOrders/>},
             {path:"register" , element :<CatgoriesStoreProvider> <SignUp/></CatgoriesStoreProvider>},
             {path:"products" , element : <CatgoriesStoreProvider><Products/></CatgoriesStoreProvider>},
             {path:"categories/:id" , element : <CatgoriesStoreProvider><Catg/></CatgoriesStoreProvider>},

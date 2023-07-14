@@ -18,7 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Cart() {
   const [state, setState] = React.useState({
@@ -51,7 +51,7 @@ export default function Cart() {
 <Divider/>
       <h6 className='fw-bolder my-3'> Total <span className='price text-muted'>(Inclusive of VAT)</span> <span className='fw-bold spcColor'>{totalCartPrice}  EGP</span> </h6>
       <Divider/>
-      <Link >      <button className='btn btn-outline-primary w-100' type='button'>Check Out</button>
+      <Link to={"/checkout"} >      <button className='btn btn-outline-primary w-100' type='button'>Check Out</button>
 </Link>
 </div>
     </Box>

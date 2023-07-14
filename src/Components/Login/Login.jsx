@@ -138,7 +138,6 @@ onSubmit : function (values) {
 
 
 return <>
-{console.log("hello")}
 <div className="alert alert-danger doesntExist" style={{display:"none"}}>Email doesn't exist !</div>
 <div className="alert alert-success sentDone "  style={{display:"none"}}>Reset Link sent successfully to your email !</div>
 
