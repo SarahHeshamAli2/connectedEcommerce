@@ -74,6 +74,8 @@ updateCartItemsQuantity(id,count)
 }
 
 
+
+
 return <>
 
 {load ? <Spinner/> : <div className="cart py-5 my-5 ">

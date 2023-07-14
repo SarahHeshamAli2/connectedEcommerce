@@ -145,6 +145,49 @@ setLoading(false)
 
       }
       }
+    async function googleAddToCart (prodId) {
+
+      try {
+        setLoad(true)
+          const {data} = await axios.post(`https://e-commerce-9w3i.onrender.com/api/v1/cart`,{
+              "product" : prodId,
+              "quantity" : 1
+            
+          },{      headers: {
+              Authorization: "Bearer "+ localStorage.getItem("googleToken"),
+            }})
+            if(data.status === "success") {
+              toast.success("Product added successfully to your cart",{position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light"})
+            } 
+        
+      setLoad(false)
+      setCartQuantity(data.cart.quantity)
+      console.log(data);
+
+      
+      } catch (error) {
+        toast.error(error?.response?.data?.message, {
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+
+        })
+        setLoad(false)
+      console.log("error",error);  
+
+      }
+      }
       
     async function addToWishList (prodId) {
       setLoader(true)
@@ -331,7 +374,7 @@ setLoading(false)
 
 
 
- return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice,addToWishList,loader,wishListPro,getWishList,deleteFromWishlist}}>
+ return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice,addToWishList,loader,wishListPro,getWishList,deleteFromWishlist,googleAddToCart}}>
 
 
 

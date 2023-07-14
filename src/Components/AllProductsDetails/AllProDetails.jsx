@@ -6,7 +6,7 @@ import $ from "jquery"
 export default function AllProDetails() {
     const userToken = localStorage.getItem("userToken")
      const {id} = useParams()
-    const { getRandomProDetails,proDetails,loading,addToCart,load,addToWishList,loader} = useContext(categoriesStore)
+    const { getRandomProDetails,proDetails,loading,addToCart,load,addToWishList,loader,googleAddToCart} = useContext(categoriesStore)
     
     useEffect(()=>{
 
@@ -14,7 +14,12 @@ export default function AllProDetails() {
     
     },[])
 
-
+function addingTest(id) {
+    addToCart(id)
+    if(localStorage.getItem("googleToken") !=null) {
+        googleAddToCart(id)
+    }
+}
  return <>
  
 
@@ -33,7 +38,7 @@ export default function AllProDetails() {
         <h3>{proDetails?.description.slice(0,240)}</h3>
         <p  className="fw-bold spcColor">{proDetails?.price} EGP</p>
         <p>Quantity : <span className="fw-bolder"> {proDetails?.quantity}</span> in stock</p>
-    {load ? <button className="btn btn-outline-primary"><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> : <button className="btn btn-outline-primary w-25" onClick={function(){addToCart(id)}}>Add to cart</button> }
+    {load ? <button className="btn btn-outline-primary"><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> : <button className="btn btn-outline-primary w-25" onClick={function(){addingTest(id)}}>Add to cart</button> }
     {loader ?<button className="btn btn-outline-primary d-block"><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> :    <button onClick={function(){addToWishList(id)}} className="btn btn-outline-primary d-block my-3 wishListBtn">Add to wishlist <i className="fa-regular fa-heart"></i></button>
 }
     <div className="wishlistAdd" style={{display:"none"}}>
