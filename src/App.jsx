@@ -65,16 +65,17 @@ export default function App() {
         localStorage.removeItem("userToken")
         localStorage.removeItem("decode")
         setCurrentUser(null)
+        if(localStorage.getItem("googleToken") !=null) {
+            localStorage.removeItem("googleToken")
+            setGoogleUser(null)
+        }
  
     
 
 
     }
 
-    function clearGoogleUser () {
-        localStorage.removeItem("googleToken")
-        setGoogleUser(null)
-    }
+   
     function googleUserDecoded() {
         let googleUser = localStorage.getItem("googleToken")
         let decodedToken = jwtDecode(googleUser)
