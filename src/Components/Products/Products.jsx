@@ -32,6 +32,9 @@ export default function Products() {
         else if( localStorage.getItem("googleToken")) {
             await googleAddToCart(id)
         }
+        else {
+            toast.error("please log in to add to your cart")
+        }
       }  
     
 return <>

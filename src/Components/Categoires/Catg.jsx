@@ -3,9 +3,10 @@ import { categoriesStore } from '../Context/CatgoriesStore'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import Loading from '../LoadingScreen/Loading'
+import { toast } from 'react-toastify'
 
 export default function Catg() {
-    const {addToCart,load}= useContext(categoriesStore)
+    const {addToCart,load,googleAddToCart}= useContext(categoriesStore)
     const id =useParams()
     const myId = id.id
 
@@ -33,6 +34,17 @@ export default function Catg() {
 
 
     }
+    async function addingTest(id) {
+        if(localStorage.getItem("userToken")) {
+             await addToCart(id)
+        }
+        else if( localStorage.getItem("googleToken")) {
+            await googleAddToCart(id)
+        }
+        else {
+            toast.error("please log in to add to your cart")
+        }
+      }  
 
 return <>
 {loading ? <Loading/> : 
@@ -52,7 +64,7 @@ return <>
             <Link         to={`/allProducts/${pro._id}`}
 >            <button className="btn btn-primary ">View Product</button>
 </Link>
-            {load?<button className="btn btn-primary"><i className="fa-solid fa-spinner fa-spin  mx-2"></i></button> :            <button className="btn btn-primary mx-2" onClick={function(){addToCart(pro._id)}}>Add to cart</button>
+            {load?<button className="btn btn-primary"><i className="fa-solid fa-spinner fa-spin  mx-2"></i></button> :            <button className="btn btn-primary mx-2" onClick={function(){addingTest(pro._id)}}>Add to cart</button>
 }
         </div>
             </div>)}

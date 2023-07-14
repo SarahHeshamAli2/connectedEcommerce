@@ -23,6 +23,9 @@ export default function AllProDetails() {
     else if( localStorage.getItem("googleToken")) {
         await googleAddToCart(id)
     }
+    else {
+        toast.error("please log in to add to your cart")
+    }
   }  
 
 async function addAllToWishList(id) {
@@ -33,6 +36,9 @@ async function addAllToWishList(id) {
     else if(localStorage.getItem("googleToken") ) {
         addGoogleWishList(id)
     } 
+    else{
+        toast.error("please log in to add to your wishlist")
+    }
   
 }
  return <>
