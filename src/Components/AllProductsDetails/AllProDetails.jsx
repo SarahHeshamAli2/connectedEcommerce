@@ -15,26 +15,25 @@ export default function AllProDetails() {
     
     },[])
 
-function addingTest(id) {
-    if(localStorage.getItem("userToken" !=null)) {
-        addToCart(id)
 
+  async function addingTest(id) {
+    if(localStorage.getItem("userToken")) {
+         await addToCart(id)
     }
-    else if(localStorage.getItem("googleToken") !=null) {
-        googleAddToCart(id)
+    else if( localStorage.getItem("googleToken")) {
+        await googleAddToCart(id)
     }
-    else {
-        toast.error("please log in first")
-    }
-}
-function addAllToWishList(id) {
-    if(localStorage.getItem("userToken" !=null)) {
+  }  
+
+async function addAllToWishList(id) {
+    if(localStorage.getItem("userToken")) {
         addToWishList(id)
 
     }
-    if(localStorage.getItem("googleToken") !=null) {
+    else if(localStorage.getItem("googleToken") ) {
         addGoogleWishList(id)
-    }
+    } 
+  
 }
  return <>
  

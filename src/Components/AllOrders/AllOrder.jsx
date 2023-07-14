@@ -9,7 +9,13 @@ const [allOrder, setallOrder] = useState(null)
 const [loading, setloading] = useState(false)
 
 useEffect(()=>{
-   getAllOrders()
+    if(localStorage.getItem("userToken")) {
+        getAllOrders()
+
+    }
+    else if ( localStorage.getItem("googleToken")){
+        GoogleGetAllOrders()
+    }
 },[])
 
 
@@ -22,6 +28,25 @@ try {
     const {data}= await axios.get(`https://e-commerce-9w3i.onrender.com/api/v1/profile/orders`,{
         headers: {
             Authorization: "Bearer "+ localStorage.getItem("userToken"),
+          }
+    })
+    setallOrder(data.orders)
+    console.log(data.orders);
+    setloading(false)
+    
+} catch (error) {
+    console.log("error" , error);
+    setloading(false)
+}        
+    }
+    async function GoogleGetAllOrders () {
+
+
+try {
+    setloading(true)
+    const {data}= await axios.get(`https://e-commerce-9w3i.onrender.com/api/v1/profile/orders`,{
+        headers: {
+            Authorization: "Bearer "+ localStorage.getItem("googleToken"),
           }
     })
     setallOrder(data.orders)

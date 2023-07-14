@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { categoriesStore } from '../Context/CatgoriesStore'
 import Loading from '../LoadingScreen/Loading'
 import EmptyWishList from '../EmptyWishList/EmptyWishList'
+import { toast } from 'react-toastify'
 
 export default function WishList() {
     useEffect(()=>{
@@ -28,17 +29,15 @@ export default function WishList() {
   }
     }
 
-
-    function addingTest(id) {
-        if(localStorage.getItem("userToken" !=null)) {
-            addToCart(id)
+    async function addingTest(id) {
+        if(localStorage.getItem("userToken")) {
+             await addToCart(id)
+        }
+        else if( localStorage.getItem("googleToken")) {
+            await googleAddToCart(id)
+        }
+      }  
     
-        }
-        console.log("extraNew");
-        if(localStorage.getItem("googleToken") !=null) {
-            googleAddToCart(id)
-        }
-    }
 return <>
 {loading? <Loading/> : <div className='wishList container my-5 py-5'>
     {wishListPro?.length == 0 ?  <EmptyWishList/>: <div className="row g-4">

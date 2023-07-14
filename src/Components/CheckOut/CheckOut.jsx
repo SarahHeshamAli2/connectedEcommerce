@@ -119,7 +119,41 @@ document.querySelectorAll('input[data-pattern-validate]').forEach(el => el.addEv
         toast.error(error.response.data.message)
       };
     }
+    async function GoogleVisaPayment() {
+      try {
+        setloading(true)
+        const {data} = await axios.post(`https://e-commerce-9w3i.onrender.com/api/v1/cart/checkout`,{"email":$("#email").val(),
+            "card_number":$("#cardNumber").val(),
+            "exp_month":$("#month").val(),
+            "exp_year":$("#year").val(),
+            "cvc":$("#cvv").val(),
+            "country":$("#country").val(),
+            "city":$("#city").val(),
+            "address":$("#address").val()} , {
+                        headers: {
+                            Authorization: "Bearer "+ localStorage.getItem("googleToken"),
+                          } 
+                    })
+                    console.log(data)
+                    if(data.status == "success") {
+                      navigate("/thank")
+                      setloading(false)
+                    }
+      } catch (error) {
+        console.log("error" ,error);
+        setloading(false)
+        toast.error(error.response.data.message)
+      };
+    }
 
+    async function payment() {
+      if(localStorage.getItem("userToken") ) {
+       await visaPayment()
+      }
+      else if (localStorage.getItem("googleToken")) {
+        await GoogleVisaPayment()
+      }
+    }
 $(".cvIcon").on("mouseenter" , function() {
     $(".cvInfo").show()
     })
@@ -194,7 +228,7 @@ $(".cvIcon").on("mouseenter" , function() {
     </div>
 </div>
     </div>
-    {loading ? <button type='button' className="btn btn-outline-primary"><i className="fa-solid fa-spinner fa-spin  mx-2"></i></button> :    <button onClick={visaPayment} type='submit' className='btn btn-outline-primary' >Confirm Checkout</button>
+    {loading ? <button type='button' className="btn btn-outline-primary"><i className="fa-solid fa-spinner fa-spin  mx-2"></i></button> :    <button onClick={payment} type='submit' className='btn btn-outline-primary' >Confirm Checkout</button>
 }
 </form>
   </div>

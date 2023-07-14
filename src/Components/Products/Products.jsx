@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import Loading from "../LoadingScreen/Loading"
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { categoriesStore } from "../Context/CatgoriesStore";
+import { toast } from "react-toastify";
 
 export default function Products() {
     const { getRandomProDetails,proDetails,addToCart,load,googleAddToCart} = useContext(categoriesStore)
@@ -24,15 +25,15 @@ export default function Products() {
         console.log("error",error);
     }
     }
-    function addingTest(id) {
-        if(localStorage.getItem("userToken" !=null)) {
-            addToCart(id)
+    async function addingTest(id) {
+        if(localStorage.getItem("userToken")) {
+             await addToCart(id)
+        }
+        else if( localStorage.getItem("googleToken")) {
+            await googleAddToCart(id)
+        }
+      }  
     
-        }
-        if(localStorage.getItem("googleToken") !=null) {
-            googleAddToCart(id)
-        }
-    }
 return <>
 
 {loading ? <Loading/> : <div className="products my-5 py-5">
