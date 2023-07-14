@@ -50,6 +50,7 @@ export default function App() {
         let userToken = localStorage.getItem("userToken")
         let decodedToken = jwtDecode(userToken)
         setCurrentUser (decodedToken)
+        console.log(currentUser);
         
 
 
@@ -66,6 +67,10 @@ export default function App() {
 
     }
 
+    function clearGoogleUser () {
+        localStorage.removeItem("googleToken")
+        setGoogleUser(null)
+    }
     function googleUserDecoded() {
         let googleUser = localStorage.getItem("googleToken")
         let decodedToken = jwtDecode(googleUser)
@@ -75,7 +80,7 @@ export default function App() {
 
     const router = createHashRouter ([
         {
-            path:"",element:<CatgoriesStoreProvider><Layout currentUser={currentUser}  clearUserData={clearUserData}/></CatgoriesStoreProvider>,children:[{
+            path:"",element:<CatgoriesStoreProvider><Layout currentUser={currentUser} clearGoogleUser ={clearGoogleUser} googleUser={ googleUser}  clearUserData={clearUserData}/></CatgoriesStoreProvider>,children:[{
                 path:"home/:id",element: <CatgoriesStoreProvider><Home /></CatgoriesStoreProvider>
             },
             {index:"true" , element :  <CatgoriesStoreProvider><Home /></CatgoriesStoreProvider>},
