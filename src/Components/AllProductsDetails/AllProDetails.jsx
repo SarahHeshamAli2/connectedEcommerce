@@ -6,7 +6,7 @@ import $ from "jquery"
 export default function AllProDetails() {
     const userToken = localStorage.getItem("userToken")
      const {id} = useParams()
-    const { getRandomProDetails,proDetails,loading,addToCart,load,addToWishList,loader,googleAddToCart} = useContext(categoriesStore)
+    const { getRandomProDetails,proDetails,loading,addToCart,load,addToWishList,loader,googleAddToCart,addGoogleWishList} = useContext(categoriesStore)
     
     useEffect(()=>{
 
@@ -19,9 +19,18 @@ function addingTest(id) {
         addToCart(id)
 
     }
-    console.log("new");
+    console.log("extraNew");
     if(localStorage.getItem("googleToken") !=null) {
         googleAddToCart(id)
+    }
+}
+function addAllToWishList(id) {
+    if(localStorage.getItem("userToken" !=null)) {
+        addToWishList(id)
+
+    }
+    if(localStorage.getItem("googleToken") !=null) {
+        addGoogleWishList(id)
     }
 }
  return <>
@@ -43,7 +52,7 @@ function addingTest(id) {
         <p  className="fw-bold spcColor">{proDetails?.price} EGP</p>
         <p>Quantity : <span className="fw-bolder"> {proDetails?.quantity}</span> in stock</p>
     {load ? <button className="btn btn-outline-primary"><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> : <button className="btn btn-outline-primary w-25" onClick={function(){addingTest(id)}}>Add to cart</button> }
-    {loader ?<button className="btn btn-outline-primary d-block"><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> :    <button onClick={function(){addToWishList(id)}} className="btn btn-outline-primary d-block my-3 wishListBtn">Add to wishlist <i className="fa-regular fa-heart"></i></button>
+    {loader ?<button className="btn btn-outline-primary d-block"><i className="fa-solid fa-spinner fa-spin  mt-3"></i></button> :    <button onClick={function(){addAllToWishList(id)}} className="btn btn-outline-primary d-block my-3 wishListBtn">Add to wishlist <i className="fa-regular fa-heart"></i></button>
 }
     <div className="wishlistAdd" style={{display:"none"}}>
     <i className="fa-solid fa-heart text-danger" >item added to wishList!</i>

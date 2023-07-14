@@ -59,7 +59,7 @@ export default function Cart() {
     
     const [open, setOpen] = React.useState(false);
 
-    const { getCartProducts,cartProducts,deleteCartItem,load,emptyYourCart,cartQuantity,updateCartItemsQuantity,loading,totalCartPrice,getGoogleCart} = useContext(categoriesStore)
+    const { getCartProducts,cartProducts,deleteCartItem,load,emptyYourCart,cartQuantity,updateCartItemsQuantity,loading,totalCartPrice,getGoogleCart,deleteGoogleCartItem,emptyGoogleCart} = useContext(categoriesStore)
 useEffect(()=>{
   if(localStorage.getItem("userToken") !=null ) {
     getCartProducts()
@@ -70,8 +70,15 @@ useEffect(()=>{
   }
 },[])
 
-
-
+function deleteCartItems(id)
+{
+  if(localStorage.getItem("userToken") !=null) {
+    deleteCartItem(id)
+  }
+  if(localStorage.getItem("googleToken") !=null) {
+    deleteGoogleCartItem(id)
+  }
+}
 async function getCartUpdated(id,count) {
 
 updateCartItemsQuantity(id,count)
@@ -80,7 +87,14 @@ updateCartItemsQuantity(id,count)
 }
 
 
-
+function emptyYourCartItemsAll() {
+  if(localStorage.getItem("userToken") !=null) {
+    emptyYourCart()
+  }
+  if(localStorage.getItem("googleToken") !=null) {
+    emptyGoogleCart()
+  }
+}
 
 return <>
 
@@ -128,7 +142,7 @@ return <>
           sx={{ mb: 2 }}
         >
          Are you sure to delete all cart items?
-         <IconButton size='small' onClick={emptyYourCart}>
+         <IconButton size='small' onClick={emptyYourCartItemsAll}>
             
                <CheckCircleIcon/>
                 </IconButton>
@@ -164,7 +178,7 @@ return <>
                   </div>
 
                 </div>
-                <span className='my-3 d-inline-block cursor-pointer' onClick={function(){deleteCartItem(pro._id)}}>Remove <i className="fa-solid fa-trash-can text-danger"></i></span>
+                <span className='my-3 d-inline-block cursor-pointer' onClick={function(){deleteCartItems(pro._id)}}>Remove <i className="fa-solid fa-trash-can text-danger"></i></span>
             </div>
         </div>)}
        

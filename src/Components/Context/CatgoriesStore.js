@@ -125,6 +125,29 @@ setLoading(false)
           setLoading(false)
         }
     }
+    async function getGoogleWishList()
+    {
+      setLoading(true)
+
+        try {
+          const {data} = await axios.get(`https://e-commerce-9w3i.onrender.com/api/v1/profile/wishlist`,{
+            headers: {
+              Authorization: "Bearer "+ localStorage.getItem("googleToken"),
+            }
+            
+          })
+          setWishListPro(data.wishList)
+          setLoading(false)
+          setCartQuantity(data.wishList.quantity)
+          setTotalCartPrice(data.price)
+          console.log(data.wishList);
+          
+        } catch (error) {
+          console.log("error",error);
+          navigateToLogin()
+          setLoading(false)
+        }
+    }
     async function addToCart (prodId) {
 
       try {
@@ -253,6 +276,47 @@ setLoading(false)
 
       }
       }
+    async function addGoogleWishList (prodId) {
+      setLoader(true)
+
+      try {
+          const {data} = await axios.post(`https://e-commerce-9w3i.onrender.com/api/v1/profile/wishlist`,{
+              "product" : prodId
+              
+            
+          },{      headers: {
+              Authorization: "Bearer "+ localStorage.getItem("googleToken"),
+            }})
+            if(data.status === "sucess") {
+              setWishListPro(data.wishList)
+              $(".wishlistAdd").fadeIn(500,function(){
+                setTimeout(() => {
+                  $(".wishlistAdd").fadeOut(1000)
+                }, 1000);
+              })
+            } 
+            setLoader(false)
+
+      console.log(data.wishList);
+
+      
+      } catch (error) {
+        toast.error(error?.response?.data?.message, {
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+
+        })
+        setLoader(false)
+
+      console.log("error",error);  
+
+      }
+      }
       
 
 async function deleteCartItem(id) {
@@ -285,11 +349,71 @@ toast.error("item deleted from cart", {
   toast.warn("something went wrong please try again")
 }
  }
+async function deleteGoogleCartItem(id) {
+try {
+  const {data} =  await axios.delete(`https://e-commerce-9w3i.onrender.com/api/v1/cart/${id}`,{
+    headers: {
+      Authorization: "Bearer "+ localStorage.getItem("googleToken"),
+    }
+
+
+  })
+  if(data.status=="Deleted successfully") {
+    console.log(data);
+
+setcartProducts(data.cart)
+toast.error("item deleted from cart", {
+  position: "top-right",
+  autoClose: 1000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light"
+
+})
+  }
+} catch (error) {
+  console.log("error",error);
+  toast.warn("something went wrong please try again")
+}
+ }
 async function deleteFromWishlist(id) { 
 try {
   const {data} =  await axios.delete(`https://e-commerce-9w3i.onrender.com/api/v1/profile/wishlist/${id}` ,{
     headers: {
       Authorization: "Bearer "+ localStorage.getItem("userToken"),
+    } 
+
+
+  })
+  if(data.status == "success") {
+
+setWishListPro(data.wishList)
+console.log(data.wishList);
+toast.error("item deleted from wishList", {
+  position: "top-right",
+  autoClose: 1000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light"
+
+})
+  }
+} catch (error) {
+  console.log("error",error);
+  toast.warn("something went wrong please try again")
+}
+ }
+async function deleteFromGoogleWishList(id) { 
+try {
+  const {data} =  await axios.delete(`https://e-commerce-9w3i.onrender.com/api/v1/profile/wishlist/${id}` ,{
+    headers: {
+      Authorization: "Bearer "+ localStorage.getItem("googleToken"),
     } 
 
 
@@ -367,6 +491,37 @@ if(response.status == 204) {
 }
 
 }
+async function emptyGoogleCart() {
+
+try {
+  const response = await axios.delete(`https://e-commerce-9w3i.onrender.com/api/v1/cart/`,{
+  headers: {
+    Authorization: "Bearer "+ localStorage.getItem("googleToken"),
+  }
+})
+if(response.status == 204) {
+  toast.error("all items are deleted from cart!",{
+
+    position: "top-right",
+    autoClose: 500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light"
+
+  })
+  setcartProducts([])
+
+}
+
+} catch (error) {
+  console.log("error",error);
+  toast.error("something went wrong please try again!")
+}
+
+}
 
 async function updateCartItemsQuantity(id,count) {
   setLoading(true)
@@ -397,7 +552,7 @@ setLoading(false)
 
 
 
- return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice,addToWishList,loader,wishListPro,getWishList,deleteFromWishlist,googleAddToCart,getGoogleCart}}>
+ return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice,addToWishList,loader,wishListPro,getWishList,deleteFromWishlist,googleAddToCart,getGoogleCart,deleteGoogleCartItem,emptyGoogleCart,addGoogleWishList,getGoogleWishList,deleteFromGoogleWishList}}>
 
 
 
