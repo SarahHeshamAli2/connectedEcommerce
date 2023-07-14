@@ -1,9 +1,10 @@
 {
   "files": {
-    "main.css": "/connectedEcommerce/static/css/main.68d6c053.css",
-    "main.js": "/connectedEcommerce/static/js/main.3195722a.js",
+    "main.css": "/connectedEcommerce/static/css/main.244da361.css",
+    "main.js": "/connectedEcommerce/static/js/main.5d8bb8e9.js",
     "static/js/787.111496f0.chunk.js": "/connectedEcommerce/static/js/787.111496f0.chunk.js",
     "static/media/pngegg (1).png": "/connectedEcommerce/static/media/pngegg (1).6d33e0669e470a90628a.png",
+    "static/media/dev.jpg": "/connectedEcommerce/static/media/dev.287e0746ba3a15122073.jpg",
     "static/media/fa-solid-900.ttf": "/connectedEcommerce/static/media/fa-solid-900.4a2cd718d7031b732e76.ttf",
     "static/media/banner-bg.png": "/connectedEcommerce/static/media/banner-bg.542ef8e1122661119763.png",
     "static/media/pngegg (2).png": "/connectedEcommerce/static/media/pngegg (2).bab49260fab884032a83.png",
@@ -12,23 +13,24 @@
     "static/media/img-1.png": "/connectedEcommerce/static/media/img-1.0241cd2ca67c4c92d440.png",
     "static/media/fa-brands-400.woff2": "/connectedEcommerce/static/media/fa-brands-400.e033a13ee751afc1860c.woff2",
     "static/media/fa-regular-400.ttf": "/connectedEcommerce/static/media/fa-regular-400.d87474231f4192884802.ttf",
+    "static/media/flat-design-santa-letter-template-design_52683-97636.webp": "/connectedEcommerce/static/media/flat-design-santa-letter-template-design_52683-97636.11a883422f08b7252efb.webp",
     "static/media/fa-regular-400.woff2": "/connectedEcommerce/static/media/fa-regular-400.3223dc79c1adee56370b.woff2",
-    "static/media/empty_wishlist.jpg": "/connectedEcommerce/static/media/empty_wishlist.ad08d6b866ff42859c8c.jpg",
     "static/media/fa-v4compatibility.ttf": "/connectedEcommerce/static/media/fa-v4compatibility.0e3a648be390bd8cb094.ttf",
     "static/media/empty-cart.svg": "/connectedEcommerce/static/media/empty-cart.d19d992674a01a6799d0186ae00f14b6.svg",
     "static/media/fa-v4compatibility.woff2": "/connectedEcommerce/static/media/fa-v4compatibility.68577e40f3e70067b5da.woff2",
     "static/media/logo.svg": "/connectedEcommerce/static/media/logo.5d0d6d5b3334bd7d80a7a31d38ec80d8.svg",
+    "static/media/credit-card.svg": "/connectedEcommerce/static/media/credit-card.f9c3d83ac09634908c37e37fe20943ab.svg",
     "static/media/slick.svg": "/connectedEcommerce/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/connectedEcommerce/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/connectedEcommerce/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/connectedEcommerce/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/connectedEcommerce/index.html",
-    "main.68d6c053.css.map": "/connectedEcommerce/static/css/main.68d6c053.css.map",
-    "main.3195722a.js.map": "/connectedEcommerce/static/js/main.3195722a.js.map",
+    "main.244da361.css.map": "/connectedEcommerce/static/css/main.244da361.css.map",
+    "main.5d8bb8e9.js.map": "/connectedEcommerce/static/js/main.5d8bb8e9.js.map",
     "787.111496f0.chunk.js.map": "/connectedEcommerce/static/js/787.111496f0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.68d6c053.css",
-    "static/js/main.3195722a.js"
+    "static/css/main.244da361.css",
+    "static/js/main.5d8bb8e9.js"
   ]
 }
