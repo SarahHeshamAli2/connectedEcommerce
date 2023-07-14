@@ -8,7 +8,7 @@ return<>
 
 
 
-<Navbar currentUser={currentUser} googleUser={googleUser} clearGoogleUser={clearGoogleUser} clearUserData={clearUserData}/>
+<Navbar currentUser={currentUser} googleUser={googleUser}  clearUserData={clearUserData}/>
 <Outlet/>
 <Footer/>
 </>

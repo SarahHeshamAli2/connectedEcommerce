@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import logo from "../../Images/logo.svg"
 import { categoriesStore } from '../Context/CatgoriesStore'
 
-export default function Navbar({currentUser,clearUserData,googleUser,clearGoogleUser}) {
+export default function Navbar({currentUser,clearUserData,googleUser}) {
   const {getCartProducts} = useContext(categoriesStore)
   const navigate = useNavigate()
   function navigateToHome() {

@@ -85,7 +85,7 @@ export default function App() {
 
     const router = createHashRouter ([
         {
-            path:"",element:<CatgoriesStoreProvider><Layout currentUser={currentUser} clearGoogleUser ={clearGoogleUser} googleUser={ googleUser}  clearUserData={clearUserData}/></CatgoriesStoreProvider>,children:[{
+            path:"",element:<CatgoriesStoreProvider><Layout currentUser={currentUser}  googleUser={ googleUser}  clearUserData={clearUserData}/></CatgoriesStoreProvider>,children:[{
                 path:"home/:id",element: <CatgoriesStoreProvider><Home /></CatgoriesStoreProvider>
             },
             {index:"true" , element :  <CatgoriesStoreProvider><Home /></CatgoriesStoreProvider>},
