@@ -15,7 +15,11 @@ export default function AllProDetails() {
     },[])
 
 function addingTest(id) {
-    addToCart(id)
+    if(localStorage.getItem("userToken" !=null)) {
+        addToCart(id)
+
+    }
+    console.log("new");
     if(localStorage.getItem("googleToken") !=null) {
         googleAddToCart(id)
     }
