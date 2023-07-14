@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import Loading from "../LoadingScreen/Loading"
 import { categoriesStore } from "../Context/CatgoriesStore"
 import $ from "jquery"
+import { toast } from "react-toastify"
 export default function AllProDetails() {
     const userToken = localStorage.getItem("userToken")
      const {id} = useParams()
@@ -21,6 +22,9 @@ function addingTest(id) {
     }
     else if(localStorage.getItem("googleToken") !=null) {
         googleAddToCart(id)
+    }
+    else {
+        toast.error("please log in first")
     }
 }
 function addAllToWishList(id) {
