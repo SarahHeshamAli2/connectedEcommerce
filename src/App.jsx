@@ -19,6 +19,7 @@ import GoogleUser from './Components/GoogleUser/GoogleUser'
 import CheckOut from './Components/CheckOut/CheckOut'
 import ThankYou from './Components/ThankYou/ThankYou'
 import AllOrders from './Components/AllOrders/AllOrder'
+import Review from './Components/Review/Review'
 
 
 
@@ -95,6 +96,7 @@ export default function App() {
             {path:"googleuser/:id" , element : <GoogleUser googleUserDecoded = {googleUserDecoded}/>},
             {path:"checkout" , element : <CheckOut/>},
             {path:"thank" , element : <ThankYou/>},
+            {path:"review/:id" , element : <CatgoriesStoreProvider><Review/></CatgoriesStoreProvider>},
             {path:"allorders" , element : <AllOrders/>},
             {path:"register" , element :<CatgoriesStoreProvider> <SignUp/></CatgoriesStoreProvider>},
             {path:"products" , element : <CatgoriesStoreProvider><Products/></CatgoriesStoreProvider>},

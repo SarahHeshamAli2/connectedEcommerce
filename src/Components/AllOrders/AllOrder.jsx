@@ -82,7 +82,9 @@ return <>
         </div>
     </div>
         
+        
         </Link>
+       <Link to={`/review/${item.product._id}`}> <button className='btn btn-outline-primary my-2 btn-sm'>Review product</button></Link>
 </div>)
 }
 </div>)}
