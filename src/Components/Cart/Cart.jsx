@@ -59,7 +59,7 @@ export default function Cart() {
     
     const [open, setOpen] = React.useState(false);
 
-    const { getCartProducts,cartProducts,deleteCartItem,load,emptyYourCart,cartQuantity,updateCartItemsQuantity,loading,totalCartPrice,getGoogleCart,deleteGoogleCartItem,emptyGoogleCart} = useContext(categoriesStore)
+    const { getCartProducts,cartProducts,deleteCartItem,load,emptyYourCart,cartQuantity,updateCartItemsQuantity,loading,totalCartPrice,getGoogleCart,deleteGoogleCartItem,emptyGoogleCart,updateGoogleCartItemsQuantity} = useContext(categoriesStore)
 useEffect(()=>{
   if(localStorage.getItem("userToken") !=null ) {
     getCartProducts()
@@ -80,8 +80,14 @@ function deleteCartItems(id)
   }
 }
 async function getCartUpdated(id,count) {
+  if(localStorage.getItem("userToken") !=null) {
+    updateCartItemsQuantity(id,count)
 
-updateCartItemsQuantity(id,count)
+  }
+  if(localStorage.getItem("googleToken") !=null) {
+    updateGoogleCartItemsQuantity(id,count)
+  }
+
 
 
 }

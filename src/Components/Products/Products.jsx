@@ -6,7 +6,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { categoriesStore } from "../Context/CatgoriesStore";
 
 export default function Products() {
-    const { getRandomProDetails,proDetails,addToCart,load} = useContext(categoriesStore)
+    const { getRandomProDetails,proDetails,addToCart,load,googleAddToCart} = useContext(categoriesStore)
 
     const [loading,setLoading] = useState(false)
     const [allProdcuts, setallProdcuts] = useState(null)
@@ -23,6 +23,15 @@ export default function Products() {
     } catch (error) {
         console.log("error",error);
     }
+    }
+    function addingTest(id) {
+        if(localStorage.getItem("userToken" !=null)) {
+            addToCart(id)
+    
+        }
+        if(localStorage.getItem("googleToken") !=null) {
+            googleAddToCart(id)
+        }
     }
 return <>
 
@@ -45,7 +54,7 @@ return <>
             <Link         to={`/allProducts/${pro._id}`}
 >            <button className="btn btn-primary ">View Product</button>
 </Link>
-            {load?<button className="btn btn-primary"><i className="fa-solid fa-spinner fa-spin  mx-2"></i></button> :            <button className="btn btn-primary mx-2" onClick={function(){addToCart(pro._id)}}>Add to cart</button>
+            {load?<button className="btn btn-primary"><i className="fa-solid fa-spinner fa-spin  mx-2"></i></button> :            <button className="btn btn-primary mx-2" onClick={function(){addingTest(pro._id)}}>Add to cart</button>
 }
         </div>
 

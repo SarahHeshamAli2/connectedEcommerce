@@ -38,6 +38,10 @@ export default function App() {
         
             getUserDataDecoded()
         }
+        if(localStorage.getItem("googleToken") !=null && googleUser == null ) {
+        
+            googleUserDecoded()
+        }
        
             },[])
         

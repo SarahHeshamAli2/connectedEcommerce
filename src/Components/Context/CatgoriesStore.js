@@ -549,10 +549,36 @@ setLoading(false)
   
   
   }
+async function updateGoogleCartItemsQuantity(id,count) {
+  setLoading(true)
+  try {
+    const {data} = await axios.patch(`https://e-commerce-9w3i.onrender.com/api/v1/cart/${id}`,{
+    "quantity" : count
+    
+  },
+  {      headers: {
+    Authorization: "Bearer "+ localStorage.getItem("googleToken"),
+  }}
+  
+  
+  )
+  if(data.status === "success") {
+ console.log(data);
+setcartProducts(data.cart)
+setTotalCartPrice(data.price)
+  }
+setLoading(false)
+} catch (error) {
+    console.log("error",error);
+    toast.error("the amount you added is succeed the amount in stock!"  )
+  }
+  
+  
+  }
 
 
 
- return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice,addToWishList,loader,wishListPro,getWishList,deleteFromWishlist,googleAddToCart,getGoogleCart,deleteGoogleCartItem,emptyGoogleCart,addGoogleWishList,getGoogleWishList,deleteFromGoogleWishList}}>
+ return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice,addToWishList,loader,wishListPro,getWishList,deleteFromWishlist,googleAddToCart,getGoogleCart,deleteGoogleCartItem,emptyGoogleCart,addGoogleWishList,getGoogleWishList,deleteFromGoogleWishList,updateGoogleCartItemsQuantity}}>
 
 
 
