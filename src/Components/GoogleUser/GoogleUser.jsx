@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-export default function GoogleUser() {
+export default function GoogleUser({googleUserDecoded}) {
   const {id} = useParams()
   console.log(id);
   useEffect(()=>{
     const myGoogleUser = localStorage.setItem("googleToken",id)
+    googleUserDecoded()
+
   },[])
 return <>
 

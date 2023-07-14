@@ -43,6 +43,7 @@ export default function App() {
         
         
     const [currentUser, setCurrentUser] = useState(null)
+    const [googleUser , setGoogleUser] = useState(null)
  
 
     function getUserDataDecoded() {
@@ -65,6 +66,12 @@ export default function App() {
 
     }
 
+    function googleUserDecoded() {
+        let googleUser = localStorage.getItem("googleToken")
+        let decodedToken = jwtDecode(googleUser)
+        setGoogleUser (decodedToken)
+        console.log(googleUser);
+    }
 
     const router = createHashRouter ([
         {
@@ -75,7 +82,7 @@ export default function App() {
             {path:"login",element:<CatgoriesStoreProvider><Login getUserDataDecoded={getUserDataDecoded}/></CatgoriesStoreProvider>},
         {path:"allProducts/:id",element:<CatgoriesStoreProvider><AllProDetails/></CatgoriesStoreProvider>},
             {path:"reset/:id" , element : <ResetPassword/>},
-            {path:"googleuser/:id" , element : <GoogleUser/>},
+            {path:"googleuser/:id" , element : <GoogleUser googleUserDecoded = {googleUserDecoded}/>},
             {path:"checkout" , element : <CheckOut/>},
             {path:"thank" , element : <ThankYou/>},
             {path:"allorders" , element : <AllOrders/>},
