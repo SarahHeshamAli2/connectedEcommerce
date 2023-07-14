@@ -63,7 +63,7 @@ return <>
 {allOrder?.map((order,ind)=> <div className="row g-5 align-items-center border border-1 my-2 rounded-1" key={ind}>
 <div className="col-md-3">
     <div className="inner-col">
-        <p>Placed On: <span className='mx-2 fw-bolder'>{order.createdAt}</span></p>
+        <p>Placed On: <span className='mx-2 fw-bolder'>{order.createdAt.slice(0,10)}</span></p>
         <p>Total price: <span className='mx-2  fw-bolder'> {order.total_price}</span> EGP</p>
         <span>Payment method : <span className='mx-2  fw-bolder'>Visa</span></span>
 
