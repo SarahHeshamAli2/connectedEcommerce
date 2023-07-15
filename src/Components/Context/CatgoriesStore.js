@@ -9,21 +9,7 @@ export const categoriesStore = createContext()
 
 
 export default function CatgoriesStoreProvider({children}) {
-//   const [googleUser, setGoogleUser] = useState(null)
 
-//   const {id} = useParams()
-// function decodeGoogle() {
-//   if(id?.startsWith("ey")){
-//     console.log(id);
-//     const googleTkn = localStorage.getItem("googleTkn")
-//     let decodedToken = jwtDecode(googleTkn)
-//     setGoogleUser(decodedToken)
-//     console.log(decodedToken);
-// } 
-
-
-
-// }
 
   const notify = () => toast("Product added successfully to cart");
 const [cartProducts, setcartProducts] = useState(null)
@@ -34,6 +20,7 @@ const [cartQuantity,setCartQuantity] = useState(null)
     const [proDetails, setproDetails] = useState(null)
     const [totalCartPrice, setTotalCartPrice] = useState(null)
     const [wishListPro, setWishListPro] = useState(null)
+    const [productReviews, setProductReview] = useState(null)
 
 
 const navigate = useNavigate()
@@ -48,6 +35,8 @@ function navigateToLogin () {
     setLoading(true)
     const {data} = await axios.get(`https://e-commerce-9w3i.onrender.com/api/v1/products/${id}`)
     setproDetails(data.product)
+    console.log(data.product);
+    setProductReview(data.product.reviews)
 setLoading(false)
     
   } catch (error) {
@@ -578,7 +567,7 @@ setLoading(false)
 
 
 
- return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice,addToWishList,loader,wishListPro,getWishList,deleteFromWishlist,googleAddToCart,getGoogleCart,deleteGoogleCartItem,emptyGoogleCart,addGoogleWishList,getGoogleWishList,deleteFromGoogleWishList,updateGoogleCartItemsQuantity}}>
+ return <categoriesStore.Provider value={{getRandomProDetails,proDetails,loading,addToCart,load,getCartProducts,cartProducts,deleteCartItem,emptyYourCart,cartQuantity,updateCartItemsQuantity,totalCartPrice,addToWishList,loader,wishListPro,getWishList,deleteFromWishlist,googleAddToCart,getGoogleCart,deleteGoogleCartItem,emptyGoogleCart,addGoogleWishList,getGoogleWishList,deleteFromGoogleWishList,updateGoogleCartItemsQuantity,productReviews}}>
 
 
 

@@ -7,7 +7,7 @@ import { toast } from "react-toastify"
 export default function AllProDetails() {
     const userToken = localStorage.getItem("userToken")
      const {id} = useParams()
-    const { getRandomProDetails,proDetails,loading,addToCart,load,addToWishList,loader,googleAddToCart,addGoogleWishList} = useContext(categoriesStore)
+    const { getRandomProDetails,proDetails,loading,addToCart,load,addToWishList,loader,googleAddToCart,addGoogleWishList,productReviews} = useContext(categoriesStore)
     
     useEffect(()=>{
 
@@ -41,6 +41,20 @@ async function addAllToWishList(id) {
     }
   
 }
+function toggleProductReview() {
+    $(".productReview").show()
+    $(".reviewBtn").hide()
+    $(".hidereviewBtn").show()
+
+}
+function hideReviews() {
+    $(".productReview").hide()
+    $(".hidereviewBtn").hide()
+    $(".reviewBtn").show()
+
+
+
+}
  return <>
  
 
@@ -66,6 +80,18 @@ async function addAllToWishList(id) {
     <i className="fa-solid fa-heart text-danger" >item added to wishList!</i>
     </div>
         </div>
+    </div>
+    <button onClick={toggleProductReview} className="btn btn-outline-primary reviewBtn my-3">Show product reviews</button>
+    <button onClick={hideReviews}  className="btn btn-outline-primary hidereviewBtn my-3" style={{display:"none"}}>hide product reviews</button>
+    <div className="productReview my-3 p-3 rounded" style={{display:"none"}}>
+        
+        {productReviews?.length ==0 ? <h3>This product does not have any reviews yet !</h3> : <>        <h3> {productReviews?.length} Customer reviews</h3>
+        {productReviews?.map((review)=>       <div className="review">
+            <p className="fw-bold p-3 text-muted">{review}</p>
+            <hr />
+        </div>)}</>}
+
+  
     </div>
 </div>
 

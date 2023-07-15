@@ -167,27 +167,24 @@ $(".cvIcon").on("mouseenter" , function() {
     <div className="miniNav">
         <Link to={"/cart"}  className='fw-bolder mx-2'> <i className="fa-solid fa-arrow-left"></i> Cart</Link >
     </div>
-    <div className="shippingDetail my-4 w-50">
+    <div className="shippingDetail my-4 w-50 ">
         <h5>Choose Your Payment Method: </h5>
     <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-  <li className="nav-item" role="presentation">
-    <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Cash</button>
-  </li>
-  <li className="nav-item" role="presentation">
-    <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Visa</button>
+
+  <li className="nav-item " role="presentation">
+    <button className="nav-link active " id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Visa</button>
   </li>
 
 </ul>
 <div className="tab-content" id="pills-tabContent">
-  <div className="tab-pane fade  active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">...</div>
-  <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+  <div className="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
 
 
 <form action="" id='myForm'>
-    <input type="email"  placeholder=' email' className='form-control w-50' id='email'/>
-    <input type="text"  placeholder=' country' className='form-control w-50 my-3' id='country'/>
-    <input type="text"  placeholder=' city' className='form-control w-50 my-3' id='city'/>
-    <input type="text"  placeholder=' address' className='form-control w-50' id='address'/>
+    <input type="email" required  placeholder=' email' className='form-control w-50' id='email'/>
+    <input type="text" required  placeholder=' country' className='form-control w-50 my-3' id='country'/>
+    <input type="text" required  placeholder=' city' className='form-control w-50 my-3' id='city'/>
+    <input type="text" required  placeholder=' address' className='form-control w-50' id='address'/>
     <div className="visa-box p-5">
         <h6 className='text-muted' >CARD NUMBER</h6>
         <div className="note position-relative fw-bolder text-muted">
@@ -216,7 +213,7 @@ $(".cvIcon").on("mouseenter" , function() {
     <div className="col-md-6">
     <h6 className='my-4 text-muted'> CVV</h6>
     <div className="cvv position-relative">
-    <input type="number"  className='border-0 text-center cv ' id='cvv' placeholder='Code'/>
+    <input type="number" required  className='border-0 text-center cv ' id='cvv' placeholder='Code'/>
     <i className="fa-solid fa-circle-question position-absolute fs-5 cvIcon"></i>
     <div className="cvInfo text-muted w-50 position-absolute bg-white" style={{display:"none"}}>
         <p className='p-0 m-0 fw-bolder'>Enter the 3 digit code on the back of your card</p>

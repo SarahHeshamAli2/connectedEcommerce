@@ -244,3 +244,6 @@ textarea:focus, input:focus{
   top: 75%;
   right: 65%;
 }
+.productReview {
+  background-color: #e6dddd20;
+}
